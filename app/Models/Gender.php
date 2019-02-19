@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use DB;
+
+class Gender extends Model
+{
+    protected $table = 'genders';
+    protected $fillable = [];
+
+    public static function getGenders(){
+    	$genders = DB::table('leaves')
+		 ->select(DB::raw('count(*) as gender_cnt, gender'))
+		 ->whereNotNull('gender')
+		 ->groupBy('gender')
+		 ->get();
+	return $genders;
+    }
+}
