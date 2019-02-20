@@ -1,50 +1,76 @@
-<html>
-<head>
-<!-- ChartJS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-</head>
-<body>
+@extends('layouts.app')
+@extends('layouts.nav')
 
-<!-- chart.js -->
-<canvas id="pieCanvas" width="400" height="400"></canvas>
-<!-- end -->
+@section('title', 'Reason types')
+
+@section('nav')
+@endsection
+
+@section('content')
+<div class="chart">
+  <!-- chart.js -->
+  <canvas id="pieCanvas"></canvas>
+  <!-- end -->
+</div>
 
 <script>
-var ctx = document.getElementById("pieCanvas");
-var pieCanvas = new Chart(ctx, {
-  // kind of graph
-  type: 'pie',
-  // data setting
-  data: {
+  var ctx = document.getElementById("pieCanvas");
+  ctx.style.height = 750;
+  var pieCanvas = new Chart(ctx, {
+    // kind of graph
+    type: 'pie',
+    // data setting
+    data: {
       // labels
       labels: [
-        @foreach ($reason_types as $reason)
-      "{{ $reason->reason_type ? $reason->reason_type : 'NULL' }}",
+        @foreach($reason_types as $key => $value) 
+          "{{ $key }}",
         @endforeach
       ],
       //dataset
       datasets: [{
-          // bg-color
-          backgroundColor: [
-              "#FF6384",
-              "#36A2EB",
-              "#FFCE56"
-          ],
-          // bg-color(on hover)
-          hoverBackgroundColor: [
-              "#FF6384",
-              "#36A2EB",
-              "#FFCE56"
-          ],
-          // datas of graph
-          data: [
-            @foreach ($reason_types as $reason)
-               {{ $reason->reason_cnt }},
-            @endforeach
-      ]
-    }]
-  }
-});
+        // bg-color
+        backgroundColor: [
+	  <!-- 'rgb(255, 230, 129)' -->
+          @for($cnt=1; $cnt<18; ++$cnt)
+            "#{{ str_pad( dechex($cnt * (16777215/18)) , 6, "0", STR_PAD_LEFT) }}",
+	  @endfor
+
+        ],
+        // bg-color(on hover)
+        //hoverBackgroundColor: [
+
+        //],
+        // datas of graph
+        data: [
+        @foreach($reason_types as $key => $value) 
+          "{{ $value }}",
+        @endforeach
+        ],
+      }],
+    },
+    options: {
+      title: {
+          display: true,
+          text: 'Leave',
+          position: 'bottom',
+      },
+      legend: {
+        display: true,
+        position: 'right',
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+    }
+  });
 </script>
-</body>
-</html>
+
+<h1>Heading Conclusion</h1>
+<p>
+write something.
+</p>
+@endsection
+
+@section('footer')
+(c) 2019 hoge.
+@endsection
