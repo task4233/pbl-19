@@ -14,7 +14,8 @@ class Leave extends Model
     public static function getReasons(){
        $reasons = DB::table('leaves')
        		->select(DB::raw('count(*) as reason_cnt, reason_type'))
-		->whereNotNull('reason_type')
+		// Display Null,too
+		// ->whereNotNull('reason_type')
 		->groupBy('reason_type')
 		->get();
        return $reasons;

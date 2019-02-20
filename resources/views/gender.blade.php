@@ -1,21 +1,12 @@
-@extends('layouts.visualiseapp')
+@extends('layouts.app')
+@extends('layouts.nav')
 
 @section('title', 'Gender')
 
-@section('menubar')
-  @parent
-  Gender Pie Chart
+@section('nav')
 @endsection
 
 @section('content')
-
-<html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="/css/app.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-  </head>
-  <body>
-
 <div class="chart">
   <!-- chart.js -->
   <canvas id="pieCanvas"></canvas>
@@ -24,6 +15,7 @@
 
 <script>
   var ctx = document.getElementById("pieCanvas");
+  ctx.style.height = 750;
   var pieCanvas = new Chart(ctx, {
     // kind of graph
     type: 'pie',
@@ -32,37 +24,51 @@
       // labels
       labels: [
         @foreach ($genders as $gender)
-          "{{ $gender->gender }}",
+          "{{ isset($gender->gender) ? $gender->gender : 'NULL'}}",
         @endforeach
       ],
       //dataset
       datasets: [{
         // bg-color
         backgroundColor: [
-          "#FF6384",
-          "#36A2EB",
-          "#FFCE56"
+          @for($cnt=1; $cnt<count($genders); ++$cnt)
+            "#{{ str_pad( dechex($cnt * (16777215/count($genders))) , 6, \"0\", STR_PAD_LEFT) }}",
+	  @endfor
         ],
         // bg-color(on hover)
-        hoverBackgroundColor: [
-          "#FF6384",
-          "#36A2EB",
-          "#FFCE56"
-        ],
+        //hoverBackgroundColor: [
+
+        //],
         // datas of graph
         data: [
           @foreach ($genders as $gender)
             {{ $gender->gender_cnt }},
           @endforeach
-        ]
-      }]
-      }
-    });
-    </script>
-  </body>
-</html>
+        ],
+      }],
+    },
+    options: {
+      title: {
+          display: true,
+          text: 'Leave',
+          position: 'bottom',
+      },
+      legend: {
+        display: true,
+        position: 'right',
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+    }
+  });
+</script>
+
+<h1>Heading Conclusion</h1>
+<p>
+write something.
+</p>
 @endsection
 
 @section('footer')
-copyright 2019 thinking_name
+(c) 2019 hoge.
 @endsection
