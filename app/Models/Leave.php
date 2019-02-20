@@ -7,16 +7,10 @@ use DB;
 
 class Leave extends Model
 {
-    //
     protected $table = 'leaves';
-    protected $fillable = [];
 
-    public static function getReasons(){
-       $reasons = DB::table('leaves')
-       		->select(DB::raw('count(*) as reason_cnt, reason_type'))
-		->whereNotNull('reason_type')
-		->groupBy('reason_type')
-		->get();
-       return $reasons;
+    public function getDistinctReason()
+    {
+        return DB::select('select reason_type, count(*) as cnt from leaves where reason_type is not null group by reason_type');
     }
 }
