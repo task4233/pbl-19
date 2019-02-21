@@ -15,6 +15,7 @@ class Leave extends Model
 	
         return $reasons;
     }
+
     // public static function getReasons(){
     //    $reasons = DB::table('leaves')
     //    		->select(DB::raw('count(*) as reason_cnt, reason_type'))
