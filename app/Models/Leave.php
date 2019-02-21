@@ -13,8 +13,8 @@ class Leave extends Model
     {
         $reasons = DB::select('select reason_type, count(*) as reason_cnt from leaves where reason_type is not null group by reason_type');
 	
-	return $reasons;
-
+        return $reasons;
+    }
     // public static function getReasons(){
     //    $reasons = DB::table('leaves')
     //    		->select(DB::raw('count(*) as reason_cnt, reason_type'))
@@ -23,6 +23,5 @@ class Leave extends Model
     // 		->groupBy('reason_type')
     // 		->get();
     //    return $reasons;
-
-    }
+    // }
 }

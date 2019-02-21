@@ -16,5 +16,5 @@ Route::get('/', function () {
 });
 
 Route::get('/employees', 'EmployeeController@index');
-Route::get('/leaves/{page}'   , 'LeaveController@index');
+Route::get('/leaves'   , 'LeaveController@index');
 Route::get('/genders'  , 'GenderController@index');  
