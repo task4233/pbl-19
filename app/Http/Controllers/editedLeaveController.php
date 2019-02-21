@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 use App\Models\Leave;
 use Illuminate\Http\Request;
 
-class LeaveController extends Controller
+class EditedLeaveController extends Controller
 {
     public function index()
     {
-        $leaves = (new Leave)->getDistinctReason();
+        $leaves = (new Leave)->getDistinctReasons();
         $arr = [];
         $trans = [
             'CareerPath' => 'Career path',
