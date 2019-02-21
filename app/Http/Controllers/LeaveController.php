@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Leave;
 use App\Models\Gender;
+use Colors\RandomColor;
 
 class LeaveController extends Controller
 {
@@ -76,4 +77,14 @@ class LeaveController extends Controller
         
         return view('leave', ['reason_types' => $reason_types]);
     }
+
+    public static function getColor()
+    {
+        $options = array();
+        $h = hue;
+        $s = self::_pickSaturation($h,array());
+        $v = self::_pickBrightness($h, $s,array());
+        return RandomColor::format(compact('h','s','v'), @$options['format']);
+    }
+
 }
