@@ -17,7 +17,7 @@
   var ctx = document.getElementById("pieCanvas");
   ctx.style.height = 750;
   var pieCanvas = new Chart(ctx, {
-    // kind of graph
+    // kind of grapheme_strpos
     type: 'doughnut',
     // data setting
     data: {

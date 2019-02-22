@@ -69,7 +69,7 @@
 write something.
 </p>
 @endsection
-    
+
 @section('footer')
 (c) 2019 hoge.
 @endsection
