@@ -14,39 +14,35 @@
 </div>
 
 <script>
+    var barChartData = {
+        labels: ['0<=x<5', '5<=x<10', '10<=x<15', '15<=x<20', '20<=x<25'],
+        datasets: [{
+                label: 'Resigned',
+                backgroundColor: "#0000EE",
+                borderColor: "#00F",
+                borderWidth: 1,
+                data: [
+                    5,10,15,20,25,
+                    ]
+            }, {
+                label: 'Not Resigned',
+                backgroundColor: "#EE0000",
+                borderColor: "#F00",
+                borderWidth: 1,
+                data: [
+                    35,30,25,20,15,
+                   ]
+            }]
+
+    };
+
   var ctx = document.getElementById("pieCanvas");
   ctx.style.height = 750;
   var pieCanvas = new Chart(ctx, {
     // kind of graph
-    type: 'doughnut',
+    type: 'bar',
     // data setting
-    data: {
-      // labels
-      labels: [
-        @foreach ($genders as $gender)
-          "{{ isset($gender->gender) ? $gender->gender : 'NULL'}}",
-        @endforeach
-      ],
-      //dataset
-      datasets: [{
-        // bg-color
-        backgroundColor: [
-          @for($cnt=1; $cnt<18; ++$cnt)
-            "#{{ str_pad( dechex($cnt * (16777215/18)) , 6, "0", STR_PAD_LEFT) }}",
-	  @endfor
-        ],
-        // bg-color(on hover)
-        //hoverBackgroundColor: [
-
-        //],
-        // datas of graph
-        data: [
-          @foreach ($genders as $gender)
-            {{ $gender->gender_cnt }},
-          @endforeach
-        ],
-      }],
-    },
+    data: barChartData,
     options: {
       title: {
           display: true,
