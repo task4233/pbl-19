@@ -1,18 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
-  <meta charset="utf-8">
-  <title>@yield('title')</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-   <style type="text/css">
-    body {
-      margin: auto;
-      text-align: center;
-    }
-  </style>
-=======
 <meta charset="utf-8">
       <title>@yield('title')</title>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
@@ -33,7 +21,6 @@
           margin: 0 auto;
        }
       </style>
->>>>>>> 76c611a7bdfa625e7d49c4bf14e4fc0e19510b75
 </head>
 <body class="body">
   <h1>@yield('title')</h1>

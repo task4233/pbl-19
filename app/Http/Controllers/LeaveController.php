@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Leave;
 use App\Models\Gender;
-<<<<<<< HEAD
-=======
+
 use Colors\RandomColor;
->>>>>>> 76c611a7bdfa625e7d49c4bf14e4fc0e19510b75
 
 class LeaveController extends Controller
 {
@@ -19,34 +17,7 @@ class LeaveController extends Controller
     }
 
     public function index(Request $request){
-    	$params = [
-<<<<<<< HEAD
-		'page' => $request->page, 
-	];
-	echo "<pre>";
-	var_dump($params['page']);
-	echo "</pre>";
-    	switch ($params['page']) {
-	  case "gender":
-	    $genders = Gender::getGenders();
-	    return view('gender', ['genders' => $genders]);
-	    break;
-	  case "reason":
-	    $reason_types = Leave::getReasons();
-	    return view('leave', ['reason_types' => $reason_types]);
-	    break;
-	  case "distance":
-	    // Still Making...
-	    break;
-	  default:
-	    // redirect to 404 page?
-	    break;
-	} 
-    	$reason_types = Leave::getReasons();
-	// dd($reason_types);
-	
-	return view('leave', ['reason_types' => $reason_types]);
-=======
+        $params = [
           'page' => $request->get('page', 'reason'), 
         ];
 	
@@ -116,7 +87,6 @@ class LeaveController extends Controller
         $s = self::_pickSaturation($h,array());
         $v = self::_pickBrightness($h, $s,array());
         return RandomColor::format(compact('h','s','v'), @$options['format']);
->>>>>>> 76c611a7bdfa625e7d49c4bf14e4fc0e19510b75
     }
 
 }
