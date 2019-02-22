@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @extends('layouts.nav')
 
-@section('title', 'Gender')
+@section('title', 'Distance')
 
 @section('nav')
 @endsection
@@ -44,11 +44,6 @@
     // data setting
     data: barChartData,
     options: {
-      title: {
-          display: true,
-          text: 'Leave',
-          position: 'bottom',
-      },
       legend: {
         display: true,
         position: 'right',
