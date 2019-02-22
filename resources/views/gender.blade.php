@@ -24,7 +24,7 @@
       // labels
       labels: [
         @foreach ($genders as $gender)
-          "{{ isset($gender->gender) ? $gender->gender : 'NULL'}}",
+          "{{ $gender->gender }}",
         @endforeach
       ],
       //dataset

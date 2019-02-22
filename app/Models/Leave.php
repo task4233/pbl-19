@@ -9,12 +9,14 @@ class Leave extends Model
 {
     protected $table = 'leaves';
 
+    /*
     public static function getDistinctReasons()
     {
         $reasons = DB::select('select reason_type, count(*) as reason_cnt from leaves where reason_type is not null group by reason_type');
 	
         return $reasons;
     }
+    */
 
     // public static function getReasons(){
     //    $reasons = DB::table('leaves')

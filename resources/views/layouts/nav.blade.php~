@@ -1,0 +1,17 @@
+<ul class="nav nav-pills nav-fill">
+  <li class="nav-item">
+    <a class="nav-link active" href="#">Reason_type</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Gender</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Distance</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#">Position</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#">Marriage Status</a>
+  </li>		       
+</ul>
