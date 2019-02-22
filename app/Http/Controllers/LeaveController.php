@@ -66,7 +66,8 @@ class LeaveController extends Controller
             return view('leave',['reason_types' => $arr]);
             break;
         case "distance":
-            // Still Making...
+            return view('distance');// Still Making...
+            
             break;
         default:
             // redirect to 404 page?
