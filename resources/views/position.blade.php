@@ -14,9 +14,8 @@
 </div>
 
 <script>
-  var ctx = document.getElementById("pieCanvas");
-  ctx.style.height = 750;
-  var pieCanvas = new Chart(ctx, {
+  var ctx = document.getElementById("DoughnatCanvas");
+  var DoughnatCanvas = new Chart(ctx, {
     // kind of grapheme_strpos
     type: 'doughnut',
     // data setting
@@ -31,8 +30,8 @@
       datasets: [{
         // bg-color
         backgroundColor: [
-          @for($cnt=1; $cnt<18; ++$cnt)
-            "#{{ str_pad( dechex($cnt * (16777215/18)) , 6, "0", STR_PAD_LEFT) }}",
+            @for($cnt=1; $cnt<=count($positions); ++$cnt)
+            "#{{ str_pad( dechex(($cnt-1) * (16777215/count($positions))) , 6, "0", STR_PAD_LEFT) }}",
 	  @endfor
         ],
         // bg-color(on hover)
