@@ -12,10 +12,11 @@ class Gender extends Model
 
     public static function getGenders(){
     	$genders = DB::table('leaves')
-		 ->select(DB::raw('count(*) as gender_cnt, gender'))
-		 ->whereNotNull('gender')
-		 ->groupBy('gender')
-		 ->get();
-	return $genders;
+                 ->select(DB::raw('count(*) as gender_cnt, gender'))
+                 ->whereNotNull('gender')
+                 ->whereRaw('gender != ""')
+                 ->groupBy('gender')
+                 ->get();
+        return $genders;
     }
 }
