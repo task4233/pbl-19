@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Leave;
 use App\Models\Gender;
-
 use Colors\RandomColor;
 
 class LeaveController extends Controller
