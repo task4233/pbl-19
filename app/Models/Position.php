@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Position extends Model
 {
@@ -12,7 +13,8 @@ class Position extends Model
     public static function getPositions(){
         $positions = DB::table('leaves')
                    ->select(DB::raw('count(*) as position_cnt, position'))
-                   ->whreNotNull('position')
+                   ->whereNotNull('position')
+                   ->whereRaw('position != ""')
                    ->groupBy('position')
                    ->get();
         return $positions;

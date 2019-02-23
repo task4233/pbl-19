@@ -19,3 +19,4 @@ Route::get('/employees', 'EmployeeController@index');
 Route::get('/leaves'   , 'LeaveController@index');
 Route::get('/genders'  , 'GenderController@index');  
 Route::get('/distances', 'DistanceController@index');
+Route::get('/positions', 'PositionController@index');
