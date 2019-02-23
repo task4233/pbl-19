@@ -7,6 +7,7 @@
       <li><a href="?page=reason">Reason</a></li>
       <li><a href="?page=gender">Gender</a></li>
       <li><a href="?page=distance">Distance</a></li>
+      <li><a href="?page=position">Position</a></li>
     </ul>
   </div>
 </nav>
