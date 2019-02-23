@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Leave;
 use App\Models\Gender;
+use App\Models\Position;
 use Colors\RandomColor;
 
 class LeaveController extends Controller
@@ -66,6 +67,10 @@ class LeaveController extends Controller
             }
             
             return view('leave', ['reason_types' => $arr]);
+            break;
+        case "position":
+            $positions = Position::getPositions();
+            return view('position', ['positions' => $positions]);
             break;
         case "distance":
             return view('distance');// Still Making...
