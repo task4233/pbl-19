@@ -1,10 +1,6 @@
 @extends('layouts.app')
-@extends('layouts.nav')
 
 @section('title', 'MaritalStatus')
-
-@section('nav')
-@endsection
 
 @section('content')
 <div class="chart">
