@@ -1,22 +1,17 @@
 @extends('layouts.app')
-@extends('layouts.nav')
 
 @section('title', 'Gender')
-
-@section('nav')
-@endsection
 
 @section('content')
 <div class="chart">
   <!-- chart.js -->
-  <canvas id="pieCanvas"></canvas>
+    <canvas id="genderChart" style="height:100%"></canvas>
   <!-- end -->
 </div>
 
 <script>
-  var ctx = document.getElementById("pieCanvas");
-  ctx.style.height = 750;
-  var pieCanvas = new Chart(ctx, {
+  var ctx = document.getElementById("genderChart");
+  var genderChart = new Chart(ctx, {
     // kind of grapheme_strpos
     type: 'doughnut',
     // data setting
@@ -50,7 +45,7 @@
     options: {
       title: {
           display: true,
-          text: 'Leave',
+          text: 'Gender',
           position: 'bottom',
       },
       legend: {
