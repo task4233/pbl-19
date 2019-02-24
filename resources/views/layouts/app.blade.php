@@ -23,6 +23,8 @@
       </style>
 </head>
 <body class="body">
+  @include('layouts.nav')
+      
   <h1>@yield('title')</h1>
 
   <div class="content">
