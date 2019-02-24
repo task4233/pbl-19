@@ -10,6 +10,12 @@ class Leave extends Model
     protected $table = 'leaves';
     protected $fillable = [];
     
+    public static function getAllAddress()
+    {
+        $address_list = self::select('address');
+        return $address_list;
+    }
+
     public static function getDistinctReasons()
     {
         $reasons = DB::table('leaves')
