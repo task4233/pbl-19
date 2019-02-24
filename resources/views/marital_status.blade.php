@@ -50,7 +50,7 @@
     options: {
       title: {
           display: true,
-          text: 'Leave',
+          text: 'MaritalStatus',
           position: 'bottom',
       },
       legend: {
