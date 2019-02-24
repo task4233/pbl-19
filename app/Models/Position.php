@@ -19,5 +19,4 @@ class Position extends Model
                    ->get();
         return $positions;
     }
-    
 }

@@ -1,25 +1,26 @@
 @extends('layouts.app')
 
-@section('title', 'Gender')
+@section('title', 'MaritalStatus')
 
 @section('content')
 <div class="chart">
   <!-- chart.js -->
-    <canvas id="genderChart" style="height:100%"></canvas>
+  <canvas id="pieCanvas"></canvas>
   <!-- end -->
 </div>
 
 <script>
-  var ctx = document.getElementById("genderChart");
-  var genderChart = new Chart(ctx, {
+  var ctx = document.getElementById("pieCanvas");
+  ctx.style.height = 750;
+  var pieCanvas = new Chart(ctx, {
     // kind of grapheme_strpos
     type: 'doughnut',
     // data setting
     data: {
       // labels
       labels: [
-        @foreach ($genders as $gender)
-          "{{ $gender->gender }}",
+        @foreach ($marital_statuses as $marital_status)
+          "{{ $marital_status->marital_status }}",
         @endforeach
       ],
       //dataset
@@ -36,8 +37,8 @@
         //],
         // datas of graph
         data: [
-          @foreach ($genders as $gender)
-            {{ $gender->gender_cnt }},
+          @foreach ($marital_statuses as $marital_status)
+            {{ $marital_status->marital_status_cnt }},
           @endforeach
         ],
       }],
@@ -45,7 +46,7 @@
     options: {
       title: {
           display: true,
-          text: 'Gender',
+          text: 'MaritalStatus',
           position: 'bottom',
       },
       legend: {
