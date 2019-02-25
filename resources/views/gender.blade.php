@@ -38,7 +38,7 @@
             {{ $gender->gender_cnt }},
           @endforeach
         ],
-      },{
+         },{
                       // bg-color
                       backgroundColor: [
             'rgba(236, 100, 75, 1)',
@@ -57,11 +57,6 @@
 			},],
     },
     options: {
-      title: {
-          display: true,
-          text: 'Gender',
-          position: 'bottom',
-      },
       legend: {
         display: true,
         position: 'top',
