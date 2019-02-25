@@ -5,7 +5,7 @@
 @section('content')
 <div class="chart">
   <!-- chart.js -->
-  <canvas id="pieCanvas"></canvas>
+  <canvas id="pieCanvas" height="400"></canvas>
   <!-- end -->
 </div>
 
@@ -27,7 +27,8 @@
       datasets: [{
         // bg-color
         backgroundColor: [
-          "orange", "skyblue",
+         'rgba(3, 201, 169, 1)',
+         'rgba(230, 126, 34, 1)'
         ],
         // bg-color(on hover)
         //hoverBackgroundColor: [
@@ -43,7 +44,8 @@
       {
         // bg-color
         backgroundColor: [
-          "orange", "skyblue",
+         'rgba(3, 201, 169, 1)',
+         'rgba(230, 126, 34, 1)'
         ],
         // bg-color(on hover)
         //hoverBackgroundColor: [

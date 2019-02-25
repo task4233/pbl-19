@@ -10,6 +10,13 @@ class Leave extends Model
     protected $table = 'leaves';
     protected $fillable = [];
     
+    public static function getAllAddress()
+    {
+        $address_list = DB::table('leaves')->select('address')->whereNotNull('address')->get();
+ 
+        return $address_list;
+    }
+
     public static function getDistinctReasons()
     {
         $reasons = DB::table('leaves')
