@@ -19,7 +19,7 @@
     data: {
       // labels
       labels: [
-        @foreach ($marital_statuses as $marital_status)
+        @foreach ($resigned_marital_statuses as $marital_status)
           "{{ $marital_status->marital_status }}",
         @endforeach
       ],
@@ -27,9 +27,7 @@
       datasets: [{
         // bg-color
         backgroundColor: [
-          @for($cnt=1; $cnt<18; ++$cnt)
-            "#{{ str_pad( dechex($cnt * (16777215/18)) , 6, "0", STR_PAD_LEFT) }}",
-	  @endfor
+          "orange", "skyblue",
         ],
         // bg-color(on hover)
         //hoverBackgroundColor: [
@@ -37,11 +35,28 @@
         //],
         // datas of graph
         data: [
-          @foreach ($marital_statuses as $marital_status)
+          @foreach ($emp_marital_statuses as $marital_status)
             {{ $marital_status->marital_status_cnt }},
           @endforeach
         ],
-      }],
+      },
+      {
+        // bg-color
+        backgroundColor: [
+          "orange", "skyblue",
+        ],
+        // bg-color(on hover)
+        //hoverBackgroundColor: [
+
+        //],
+        // datas of graph
+        data: [
+          @foreach ($resigned_marital_statuses as $marital_status)
+            {{ $marital_status->marital_status_cnt }},
+          @endforeach
+        ],
+      }
+      ],
     },
     options: {
       title: {

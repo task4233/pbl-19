@@ -13,7 +13,8 @@ class MaritalStatusController extends Controller
     }
 
     public function index(){
-        $marital_statuses = MaritalStatus::getMaritalStatuses();
-	return view('marital_status', ['marital_statuses' => $marital_statuses]);
+        $resigned_marital_statuses = MaritalStatus::getResignedMaritalStatuses();
+        $emp_marital_statuses = MaritalStatus::getEmpMaritalStatuses();
+	    return view('marital_status', compact('resigned_marital_statuses', 'emp_marital_statuses'));
     }
 }
