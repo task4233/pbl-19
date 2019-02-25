@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'LeaveController@index');
 
 Route::get('/employees', 'EmployeeController@index');
 Route::get('/leaves'   , 'LeaveController@index');
