@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Leave;
 use App\Models\Gender;
+use App\Models\MaritalStatus;
 use App\Models\Position;
 use Colors\RandomColor;
 
@@ -27,6 +28,10 @@ class LeaveController extends Controller
         case "gender":
             $genders = Gender::getGenders();
             return view('gender', ['genders' => $genders]);
+            break;
+        case "marital_status":
+            $marital_statuses = MaritalStatus::getMaritalStatuses();
+            return view('marital_status', ['marital_statuses' => $marital_statuses]);
             break;
         case "reason":
             $leaves = Leave::getDistinctReasons();

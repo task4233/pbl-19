@@ -1,10 +1,6 @@
 @extends('layouts.app')
-@extends('layouts.nav')
 
 @section('title', 'Distance')
-
-@section('nav')
-@endsection
 
 @section('content')
 
