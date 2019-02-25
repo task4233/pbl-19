@@ -4,9 +4,9 @@
 
 @section('content')
 <div class="chart">
-		<!-- chart.js -->
-		<canvas id="ctx"></canvas>
-		<!-- end -->
+    <!-- chart.js -->
+    <canvas id="ctx"></canvas>
+    <!-- end -->
 </div>
 
 <script type="text/javascript">
@@ -21,7 +21,7 @@
         $.ajax({
                 type : "GET",
          url : "https://places.cit.api.here.com/places/v1/autosuggest",
-                data : {
+         data : {
                     at : "0,0",
          q: "3D Center Building, 3 Phố Duy Tân, Dịch Vọng Hậu, Cầu Giấy, Hà Nội, Việt Nam",
          app_id: "WJQVxZR8CSM7ecshD53Z",
@@ -33,13 +33,14 @@
              long1 = data['results'][0]['position'][0];
              lat1 = data['results'][0]['position'][1];
              // data would be here if loading successfully
-             for (var index = 0; index < address_list.length; index++) {
+             // for (var index = 0; index < $emp_addresses_json.length; index++) {
+             @foreach ($emp_addresses as $emp_address)
                  $.ajax({
                          type : "GET",
                   url : "https://places.cit.api.here.com/places/v1/autosuggest",
                   data : {
                              at : "0,0",
-                  q: address_list[index],
+                  q: {{ json_encode($emp_address, JSON_UNESCAPED_UNICODE) }},
                   app_id: "WJQVxZR8CSM7ecshD53Z",
                   app_code: "jKlH9w7PjRP1pkVwK5-4IQ"
                   },
@@ -51,17 +52,20 @@
                       // data would be here if loading successfully
                   }
                   });
-             }
-             for (var index = 0; index < resign_address_list.length; index++) {
-                 $.ajax({
-                         type : "GET",
-                  url : "https://places.cit.api.here.com/places/v1/autosuggest",
-                  data : {
-                             at : "0,0",
-                  q: resign_address_list[index],
-                  app_id: "WJQVxZR8CSM7ecshD53Z",
-                  app_code: "jKlH9w7PjRP1pkVwK5-4IQ"
-                  },
+             @endforeach
+                 //}
+             
+                 @foreach ($resigned_addresses as $resigned_address)
+                     // for (var index = 0; index < resigned_addresses_json.length; index++) {
+                     $.ajax({
+                             type : "GET",
+                      url : "https://places.cit.api.here.com/places/v1/autosuggest",
+                      data : {
+                                 at : "0,0",
+                      q: {{ json_encode($resigned_address, JSON_UNESCAPED_UNICODE) }},
+                      app_id: "WJQVxZR8CSM7ecshD53Z",
+                      app_code: "jKlH9w7PjRP1pkVwK5-4IQ"
+                      },
                   success : function (data){
                       if(data['results'][0]){
                           resign_distances.push(getDistanceFromLatLonInKm(parseFloat(lat1),parseFloat(long1),parseFloat(data['results'][0]['position'][1]),parseFloat(data['results'][0]['position'][0])));
@@ -69,7 +73,8 @@
                       }
                   }
                   });
-             }
+             @endforeach
+             //}
          }
          });
         $(document).ajaxStop(function() {

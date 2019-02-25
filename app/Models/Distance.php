@@ -13,20 +13,21 @@ class Distance extends Model
     // get addresses of employees
     public static function getEmployeesAddresses() {
         $emp_addresses = DB::table('employees')
+                       ->select('address')
                        ->whereNotNull('address')
                        ->whereRaw('address != ""')
-                       ->groupBy('address')
                        ->get();
+        return $emp_addresses;
     }
 
     // get addresses of resigned people
     public static function getResignedPeopleAddresses(){
         $resigned_people_addresses = DB::table('leaves')
+                                   ->select('address')
                                    ->whereNotNull('address')
                                    ->whereRaw('address != ""')
-                                   ->groupBy('address')
                                    ->get();
-        return $resinged_people_addresses;
+        return $resigned_people_addresses;
     }
 
 }

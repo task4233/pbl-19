@@ -7,16 +7,18 @@ use App\Models\Distance;
 
 class DistanceController extends Controller
 {
-    public function index()
+    const R = 6371; // Radius of the earth in km
+    
+    public static function index()
     {
-        $emp_addresses = Distance::getEmployeesAddresses();
-        $resingned_addresses = Distance::getResignedPeopleAddresses();
-        return view('distance');
+        $emp_addresses       = Distance::getEmployeesAddresses();
+        $resigned_addresses = Distance::getResignedPeopleAddresses();
+// dd($emp_addresses_json.length);
+        return view('distance', compact('emp_addresses', 'resigned_addresses'));
     }
     
     // get the Distance from (lat1, lon1) to (lat2, lon2)
     private static function getDistanceFromLatLonInKm($lat1, $lon1, $lat2, $lon2) {
-        const R = 6371; // Radius of the earth in km
         $dLat = deg2rad($lat2-$lat1);  // deg2rad below
         $dLon = deg2rad($lon2-$lon1); 
         $a = 
