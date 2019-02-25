@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Leave;
-use Illuminate\Http\Request;
 
 class LeaveController extends Controller
 {
@@ -13,7 +12,7 @@ class LeaveController extends Controller
 
     }
 
-    public function index(Request $request)
+    public function index()
     {
         $leaves = Leave::getDistinctReasons();
         $arr = [];
@@ -40,7 +39,7 @@ class LeaveController extends Controller
             'Sang CW JP' => 'Going abroad',
             'Nghỉ đột xuất' => 'Personal issues'
         ];
-        //dd(array_key_exists($trans['Sang CW JP'], $arr));
+
         foreach ($leaves as $leave) {
             $reason = trim($leave->reason_type);
             $count = $leave->reason_cnt;

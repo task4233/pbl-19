@@ -9,7 +9,7 @@
     <!-- end -->
 </div>
 <script>
-    var ctx = document.getElementById("reasonCharts");
+    var ctx = document.getElementById("reasonChart");
     var reasonChart = new Chart(ctx, {
         // kind of graph
         type: 'doughnut',

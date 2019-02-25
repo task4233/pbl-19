@@ -8,7 +8,7 @@ use DB;
 class Position extends Model
 {
     protected $table = 'positions';
-    protected $fillable = [];
+    protected $fillable = ['position'];
 
     public static function getResignedPositions(){
         $positions = DB::table('leaves')
