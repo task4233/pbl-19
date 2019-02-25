@@ -61,14 +61,9 @@
       ],
     },
     options: {
-      title: {
-          display: true,
-          text: 'MaritalStatus',
-          position: 'bottom',
-      },
       legend: {
         display: true,
-        position: 'right',
+        position: 'top',
       },
       responsive: true,
       maintainAspectRatio: false,

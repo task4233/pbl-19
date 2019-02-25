@@ -18,27 +18,27 @@ class LeaveController extends Controller
         $leaves = Leave::getDistinctReasons();
         $arr = [];
         $trans = [
-            'CareerPath' => 'Career path',
+            'CareerPath' => 'Going abroad',
             'Personal Issues' => 'Personal issues',
-            'Working Environment' => 'Working enviroment',
+            'Working Environment' => 'Working environment',
             'Không có lý do thôi việc' => 'No reason',
-            'Chuyển môi trường làm việc' => 'Working enviroment',
-            'Việc gia đình không thể đi làm tiếp' => 'Family issues',
-            'Đi học tiếp' => 'Further education',
-            'Sang Nhật làm' => 'Move to JP',
+            'Chuyển môi trường làm việc' => 'Working environment',
+            'Việc gia đình không thể đi làm tiếp' => 'Personal issues',
+            'Đi học tiếp' => 'Personal issues',
+            'Sang Nhật làm' => 'Going abroad',
             'Lý do cá nhân' => 'Personal issues',
-            'Không phù hợp môi trường' => 'Not suitable',
+            'Không phù hợp môi trường' => 'Working environment',
             'Sang nước ngoài' => 'Going abroad',
-            'Về kinh doanh gia đình' => 'Personal bussiness',
-            'Thay đổi môi trường' => 'Working enviroment',
-            'Start up' => 'Build new company',
+            'Về kinh doanh gia đình' => 'Personal business',
+            'Thay đổi môi trường' => 'Working environment',
+            'Start up' => 'Personal business',
             'Nghỉ thực tập' => 'Internship over',
             'Hết thời hạn' => 'Expired',
-            'Thay đổi định hướng' => 'Career path',
-            'Sang JP Co-well' => 'Move to CW JP',
-            'Công ty ko phù hợp với định hướng ban đầu' => 'Career path',
-            'Sang CW JP' => 'Move to CW JP',
-            'Nghỉ đột xuất' => 'Instant quit'
+            'Thay đổi định hướng' => 'Going abroad',
+            'Sang JP Co-well' => 'Going abroad',
+            'Công ty ko phù hợp với định hướng ban đầu' => 'Going abroad',
+            'Sang CW JP' => 'Going abroad',
+            'Nghỉ đột xuất' => 'Personal issues'
         ];
         //dd(array_key_exists($trans['Sang CW JP'], $arr));
         foreach ($leaves as $leave) {

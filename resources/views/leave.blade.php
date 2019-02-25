@@ -12,7 +12,7 @@
     var ctx = document.getElementById("pieCanvas");
     var pieCanvas = new Chart(ctx, {
         // kind of graph
-        type: 'bar',
+        type: 'doughnut',
         // data setting
         data: {
             // labels
@@ -41,14 +41,9 @@
                 }],
         },
         options: {
-            title: {
-                display: true,
-                text: 'Reason types',
-                position: 'bottom',
-            },
             legend: {
                 display: true,
-                position: 'right',
+                position: 'top',
             },
             responsive: true,
             maintainAspectRatio: false,
