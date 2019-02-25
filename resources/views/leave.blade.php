@@ -5,14 +5,14 @@
 @section('content')
 <div class="chart">
     <!-- chart.js -->
-    <canvas id="pieCanvas"></canvas>
+    <canvas id="pieCanvas" height="400"></canvas>
     <!-- end -->
 </div>
 <script>
     var ctx = document.getElementById("pieCanvas");
     var pieCanvas = new Chart(ctx, {
         // kind of graph
-        type: 'doughnut',
+        type: 'bar',
         // data setting
         data: {
             // labels

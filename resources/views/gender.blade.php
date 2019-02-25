@@ -7,10 +7,6 @@
   <!-- chart.js -->
     <canvas id="resignedGenderChart"></canvas>
   <!-- end -->
-</div>
-<div class="chart">
-		<canvas id="empGenderChart"></canvas>
-</div>
 
 <script>
   var ctx = document.getElementById("resignedGenderChart");
@@ -27,27 +23,26 @@
       ],
       //dataset
       datasets: [{
-					// bg-color
-					backgroundColor: [
-							"orange",
-							"skyblue",
-					],
-					// bg-color(on hover)
-					//hoverBackgroundColor: [
-					
-					//],
-					// datas of graph
-					data: [
-							@foreach ($emp_genders as $gender)
-							{{ $gender->gender_cnt }},
-							@endforeach
-					],
-					
+        // bg-color
+        backgroundColor: [
+            'rgba(236, 100, 75, 1)',
+            'rgba(165, 55, 253, 1)'
+        ],
+        // bg-color(on hover)
+        //hoverBackgroundColor: [
+
+        //],
+        // datas of graph
+        data: [
+          @foreach ($genders as $gender)
+            {{ $gender->gender_cnt }},
+          @endforeach
+        ],
       },{
 					// bg-color
 					backgroundColor: [
-							"orange",
-							"skyblue",
+            'rgba(236, 100, 75, 1)',
+            'rgba(165, 55, 253, 1)'
 					],
 					// bg-color(on hover)
 					//hoverBackgroundColor: [
@@ -69,7 +64,7 @@
       },
       legend: {
         display: true,
-        position: 'right',
+        position: 'top',
       },
       responsive: true,
       maintainAspectRatio: false,
