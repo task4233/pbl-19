@@ -12,7 +12,7 @@
     var ctx = document.getElementById("pieCanvas");
     var pieCanvas = new Chart(ctx, {
         // kind of graph
-        type: 'doughnut',
+        type: 'bar',
         // data setting
         data: {
             // labels
