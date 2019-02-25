@@ -13,7 +13,7 @@
   var ctx = document.getElementById("DoughnatCanvas");
   var DoughnatCanvas = new Chart(ctx, {
     // kind of grapheme_strpos
-    type: 'doughnut',
+    type: 'bar',
     // data setting
     data: {
       // labels

@@ -18,12 +18,12 @@
       // labels
       labels: [
         @foreach ($resigned_genders as $gender)
-          "{{ $gender->gender }}",
+        "{{ $gender->gender }}",
         @endforeach
       ],
       //dataset
       datasets: [{
-        // bg-color
+                      // bg-color
         backgroundColor: [
             'rgba(236, 100, 75, 1)',
             'rgba(165, 55, 253, 1)'
@@ -34,13 +34,13 @@
         //],
         // datas of graph
         data: [
-          @foreach ($genders as $gender)
+          @foreach ($emp_genders as $gender)
             {{ $gender->gender_cnt }},
           @endforeach
         ],
       },{
-					// bg-color
-					backgroundColor: [
+                      // bg-color
+                      backgroundColor: [
             'rgba(236, 100, 75, 1)',
             'rgba(165, 55, 253, 1)'
 					],
