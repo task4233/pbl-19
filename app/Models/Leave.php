@@ -12,7 +12,8 @@ class Leave extends Model
     
     public static function getAllAddress()
     {
-        $address_list = self::select('address');
+        $address_list = DB::table('leaves')->select('address')->whereNotNull('address')->get();
+ 
         return $address_list;
     }
 

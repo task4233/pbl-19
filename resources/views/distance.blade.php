@@ -1,164 +1,120 @@
 @extends('layouts.app')
 
-@section('title', 'Distance')
+@section('title', 'Gender')
 
 @section('content')
-
 <div class="chart">
-  <!-- chart.js -->
-  <canvas id="ctx"></canvas>
-  <!-- end -->
+    <!-- chart.js -->
+    <canvas id="genderChart" style="height:100%"></canvas>
+    <!-- end -->
 </div>
 
 <script>
-    @php 
-    $addresses = array();
-    $resign_address = array();
-    $handle = fopen("address.txt", "r");
-        if ($handle) {
-            while (($line = fgets($handle)) !== false) {
-                array_push($addresses,$line);
-            }
-            fclose($handle);
-        } else {
-            echo "Cant open file";
-            // error opening the file.
-        } 
-        echo '<script>';
-        echo 'var address_list = ' . json_encode($addresses,JSON_UNESCAPED_UNICODE) . ';';
-        echo '</script>';
-    $handle2 = fopen("leaves_address.txt", "r");
-        if ($handle2) {
-            while (($line = fgets($handle2)) !== false) {
-                array_push($resign_address,$line);
-            }
-            fclose($handle2);
-        } else {
-            echo "Cant open file";
-            // error opening the file.
-        } 
-        echo '<script>';
-        echo 'var resign_address_list = ' . json_encode($resign_address,JSON_UNESCAPED_UNICODE) . ';';
-        echo '</script>';
+    var radius = ['x < 5', '5 <= x < 10', '10 <= x < 15', '15 <= x'];
+    var color = Chart.helpers.color;
+    var barChartData = {
+        labels: radius,
+        datasets: [{
+            label: 'x < 5',
+            backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+            borderColor: window.chartColors.red,
+            borderWidth: 1,
+            data: [
+                
+            ]
+        }, {
+            label: 'Dataset 2',
+            backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+            borderColor: window.chartColors.blue,
+            borderWidth: 1,
+            data: [
+                randomScalingFactor(),
+                randomScalingFactor(),
+                randomScalingFactor(),
+                randomScalingFactor(),
+                randomScalingFactor(),
+                randomScalingFactor(),
+                randomScalingFactor()
+            ]
+        }]
 
-    @endphp
-    <script>
-        function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
-            var R = 6371; // Radius of the earth in km
-            var dLat = deg2rad(lat2-lat1);  // deg2rad below
-            var dLon = deg2rad(lon2-lon1); 
-            var a = 
-                Math.sin(dLat/2) * Math.sin(dLat/2) +
-                Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
-                Math.sin(dLon/2) * Math.sin(dLon/2)
-                ; 
-            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-            var d = R * c; // Distance in km
-            return d;
-        }
+    };
 
-        function deg2rad(deg) {
-            return deg * (Math.PI/180)
-        }
-        var long1;
-        var lat1;
-        var long_array = new Array();
-        var lat_array = new Array();
-        var distances = new Array();
-        var resign_distances = new Array();
-        var address="3D Center Building, 3 Phố Duy Tân, Dịch Vọng Hậu, Cầu Giấy, Hà Nội, Việt Nam";
-        $.ajax({
-            type : "GET",
-            url : "https://places.cit.api.here.com/places/v1/autosuggest",
-            data : {
-                at : "0,0",
-                q: "3D Center Building, 3 Phố Duy Tân, Dịch Vọng Hậu, Cầu Giấy, Hà Nội, Việt Nam",
-                app_id: "WJQVxZR8CSM7ecshD53Z",
-                app_code: "jKlH9w7PjRP1pkVwK5-4IQ"
-            },
-            success : function (data){
-                console.log("latitude : "+data['results'][0]['position'][0]);
-                console.log("longtitude : "+data['results'][0]['position'][1]);
-                long1 = data['results'][0]['position'][0];
-                lat1 = data['results'][0]['position'][1];
-            // data would be here if loading successfully
-                for (var index = 0; index < address_list.length; index++) {
-                    $.ajax({
-                        type : "GET",
-                        url : "https://places.cit.api.here.com/places/v1/autosuggest",
-                        data : {
-                            at : "0,0",
-                            q: address_list[index],
-                            app_id: "WJQVxZR8CSM7ecshD53Z",
-                            app_code: "jKlH9w7PjRP1pkVwK5-4IQ"
-                        },
-                        success : function (data){
-                            if(data['results'][0]){
-                                distances.push(getDistanceFromLatLonInKm(parseFloat(lat1),parseFloat(long1),parseFloat(data['results'][0]['position'][1]),parseFloat(data['results'][0]['position'][0])));
-                            }
-                            
-                        // data would be here if loading successfully
-                        }
-                    });
-                }
-                for (var index = 0; index < resign_address_list.length; index++) {
-                    $.ajax({
-                        type : "GET",
-                        url : "https://places.cit.api.here.com/places/v1/autosuggest",
-                        data : {
-                            at : "0,0",
-                            q: resign_address_list[index],
-                            app_id: "WJQVxZR8CSM7ecshD53Z",
-                            app_code: "jKlH9w7PjRP1pkVwK5-4IQ"
-                        },
-                        success : function (data){
-                            if(data['results'][0]){
-                                resign_distances.push(getDistanceFromLatLonInKm(parseFloat(lat1),parseFloat(long1),parseFloat(data['results'][0]['position'][1]),parseFloat(data['results'][0]['position'][0])));
-                        // data would be here if loading successfully
-                            }
-                        }
-                    });
+    window.onload = function () {
+        var ctx = document.getElementById('canvas').getContext('2d');
+        window.myBar = new Chart(ctx, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                responsive: true,
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Chart.js Bar Chart'
                 }
             }
         });
-        $(document).ajaxStop(function() {
-            var pivot = new Array(0,5,10,15);
-            var number_of_people = new Array(0,0,0,0);
-            var number_of_resign_people = new Array(0,0,0,0);
-            for (index = 0, len = pivot.length; index < len-2; index++) {
-                for(index2 = 0,len2 = distances.length;index2<len2;index2++){
-                    if(pivot[pivot.length-1]<distances[index2]){
-                        number_of_people[pivot.length-1]++;
-                        continue;
-                    }
-                    if(pivot[index]<distances[index2] && distances[index2]<pivot[index+1]){
-                        number_of_people[index]++;
-                    }
-                }
+
+    };
+
+   
+
+    var colorNames = Object.keys(window.chartColors);
+    document.getElementById('addDataset').addEventListener('click', function () {
+        var colorName = colorNames[barChartData.datasets.length % colorNames.length];
+        var dsColor = window.chartColors[colorName];
+        var newDataset = {
+            label: 'Dataset ' + (barChartData.datasets.length + 1),
+            backgroundColor: color(dsColor).alpha(0.5).rgbString(),
+            borderColor: dsColor,
+            borderWidth: 1,
+            data: []
+        };
+
+        for (var index = 0; index < barChartData.labels.length; ++index) {
+            newDataset.data.push(randomScalingFactor());
+        }
+
+        barChartData.datasets.push(newDataset);
+        window.myBar.update();
+    });
+
+    document.getElementById('addData').addEventListener('click', function () {
+        if (barChartData.datasets.length > 0) {
+            var month = MONTHS[barChartData.labels.length % MONTHS.length];
+            barChartData.labels.push(month);
+
+            for (var index = 0; index < barChartData.datasets.length; ++index) {
+                // window.myBar.addData(randomScalingFactor(), index);
+                barChartData.datasets[index].data.push(randomScalingFactor());
             }
-            for (index = 0, len = pivot.length; index < len-2; index++) {
-                for(index2 = 0,len2 = resign_distances.length;index2<len2;index2++){
-                    if(pivot[pivot.length-1]<resign_distances[index2]){
-                        number_of_people[pivot.length-1]++;
-                        continue;
-                    }
-                    if(pivot[index]<resign_distances[index2] && resign_distances[index2]<pivot[index+1]){
-                        number_of_resign_people[index]++;
-                    }
-                }
-            }
-            console.log("Number of emp : "+number_of_people);
-            console.log("Number of resigned : "+number_of_resign_people);
+
+            window.myBar.update();
+        }
+    });
+
+    document.getElementById('removeDataset').addEventListener('click', function () {
+        barChartData.datasets.pop();
+        window.myBar.update();
+    });
+
+    document.getElementById('removeData').addEventListener('click', function () {
+        barChartData.labels.splice(-1, 1); // remove the label first
+
+        barChartData.datasets.forEach(function (dataset) {
+            dataset.data.pop();
         });
-        // get addresses
-    </script>
-    
-</html>
+
+        window.myBar.update();
+    });
+
 </script>
 
 <h1>Heading Conclusion</h1>
 <p>
-write something.
+    write something.
 </p>
 @endsection
 

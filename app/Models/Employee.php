@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     //
-    public function getLeaves()
+    public static function getEmployeeAddress()
     {
-	$leaves = DB::table('leaves');
+        return self::select('address')->get();
     }
 }
