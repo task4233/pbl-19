@@ -15,27 +15,17 @@ class PositionController extends Controller
         // normal graph
         $resigned_positions = Position::getResignedPositions();
         self::fill_resigned_data($resigned_positions);
-        
+        $avg_resigned_positions = $resigned_positions->avg();
+        // $summarized_resigned_positions = self::summarize_positions_graph($resigned_positions);
+
         $emp_positions      = Position::getEmpPositions();
         self::fill_emp_data($emp_positions);
+        $avg_resigned_positions = $emp_positions->avg();
+        // $summarized_emp_positions = self::summarize_positions_graph($emp_positions);
 
         // summarized graph
-        $summarized_resigned_positions = $resigned_position;
-        $arr = [];
-        $trans = [
-            
-        ];
 
-        foreach ($leaves as $leave) {
-            $reason = trim($leave->reason_type);
-            $count = $leave->reason_cnt;
-            if ($arr && array_key_exists($trans[$reason], $arr) == true) {
-                $arr[$trans[$reason]] += $count;
-            } else {
-                $arr += array($trans[$reason]=>$count);
-                $arr[$trans[$reason]] = $count;
-            }
-        }
+        
 
         return view('position', compact('resigned_positions', 'emp_positions'));
     }
@@ -117,6 +107,25 @@ class PositionController extends Controller
             "position_cnt" => 0,
             "position" => "Tec-Specialist"
         ]);
+    }
+
+    private function summarize_positions_graph($datas){
+        $arr = [];
+        $trans = [
+            
+        ];
+
+        foreach ($datas as $data) {
+            $item = trim($data->position);
+            $cnt = $data->position_cnt;
+            if ($arr && array_key_exists($trans[$item], $arr) == true) {
+                $arr[$trans[$item]] += $cnt;
+            } else {
+                $arr += array($trans[$item]=>$cnt);
+                $arr[$trans[$item]] = $cnt;
+            }
+        }
+        return $arr;
     }
 
 }
