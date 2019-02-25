@@ -10,24 +10,27 @@
     <link href="https://fonts.googleapis.com/css?family=Niconne" rel="stylesheet">
     <style type="text/css">
       html {
+          background-color: #E1E1E1;
           height: 100%;
       }
       body {
+          background-color: #E1E1E1;
           height: 100%;
           margin: auto;
           text-align: center;
       }
     .navbar-brand {
-     font-family: 'Niconne', cursive;
-    font-size: 30px;
- }
-.content {
-          height: 100%;
-		 }
-     .chart {
-         height: 100%;
-         margin: 0 auto;
+        font-family: 'Niconne', cursive;
+        font-size: 30px;
      }
+     .content {
+         background-color: #E1E1E1;
+         height: 100%;
+      }
+      .chart {
+          height: 80%;
+          margin: 0 auto;
+       }
     </style>
 </head>
 
