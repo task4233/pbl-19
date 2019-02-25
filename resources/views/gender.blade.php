@@ -13,12 +13,12 @@
   var ctx = document.getElementById("genderChart");
   var genderChart = new Chart(ctx, {
     // kind of grapheme_strpos
-    type: 'doughnut',
+    type: 'bar',
     // data setting
     data: {
       // labels
       labels: [
-        @foreach ($genders as $gender)
+        @foreach ($resigned_genders as $gender)
           "{{ $gender->gender }}",
         @endforeach
       ],
@@ -36,7 +36,7 @@
         //],
         // datas of graph
         data: [
-          @foreach ($genders as $gender)
+          @foreach ($resigned_genders as $gender)
             {{ $gender->gender_cnt }},
           @endforeach
         ],

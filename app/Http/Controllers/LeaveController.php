@@ -26,8 +26,9 @@ class LeaveController extends Controller
         
         switch ($params['page']) {
         case "gender":
-            $genders = Gender::getGenders();
-            return view('gender', ['genders' => $genders]);
+            $resigned_genders = Gender::getResignedGenders();
+            $emp_genders      = Gender::getEmpGenders();
+            return view('gender', compact('resigned_genders', 'emp_genders'));
             break;
         case "marital_status":
             $marital_statuses = MaritalStatus::getMaritalStatuses();
