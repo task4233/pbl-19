@@ -57,7 +57,6 @@
                 long1 = data['Response']['View'][0]['Result'][0]['Location']['DisplayPosition'].Longitude;
                 lat1 = data['Response']['View'][0]['Result'][0]['Location']['DisplayPosition'].Latitude;
                 // data would be here if loading successfully
-                console.log(address_list);
                 for (var index = 0; index < address_list.length; index++) {
                     var dataToSend = address_list[index];
                     $.ajax({
@@ -70,15 +69,8 @@
                         },
                         success: function (data) {
                             if (data['Response']['View'].length != 0) {
-                                distances.push(getDistanceFromLatLonInKm(parseFloat(
-                                        lat1),
-                                    parseFloat(long1), data['Response']['View']
-                                    [0][
-                                        'Result'
-                                    ][0]['Location']['DisplayPosition'].Latitude,
-                                    data['Response']['View'][0]['Result'][0][
-                                        'Location'
-                                    ]['DisplayPosition'].Longitude));
+                                distances.push(getDistanceFromLatLonInKm(parseFloat(lat1), parseFloat(long1), data['Response']['View'][0]['Result'][0]['Location']['DisplayPosition'].Latitude, data['Response']['View'][0]['Result'][0]['Location']['DisplayPosition'].Longitude));
+                                
                                 // data would be here if loading successfully
                             }
                         }
@@ -97,20 +89,11 @@
                         success: function (data) {
                             if (data['Response']['View'].length != 0) {
                                 resign_distances.push(getDistanceFromLatLonInKm(
-                                    parseFloat(
-                                        lat1), parseFloat(long1), data[
-                                        'Response'][
-                                        'View'
-                                    ][0]['Result'][0]['Location'][
-                                        'DisplayPosition'
-                                    ]
-                                    .Latitude, data['Response']['View'][0][
-                                        'Result'
-                                    ]
-                                    [0]['Location']['DisplayPosition'].Longitude
+                                    parseFloat(lat1), parseFloat(long1), data['Response']['View'][0]['Result'][0]['Location']['DisplayPosition'].Latitude, data['Response']['View'][0]['Result'][0]['Location']['DisplayPosition'].Longitude
                                 ));
                                 // data would be here if loading successfully
                             }
+
                         }
                     });
                 }
@@ -118,34 +101,33 @@
         });
     }
     $(document).ajaxStop(function () {
-            var pivot = new Array(0, 5, 10, 15);
-            var number_of_people = new Array(0, 0, 0, 0);
-            var number_of_resign_people = new Array(0, 0, 0, 0);
-            for (index = 0, len = pivot.length; index < len - 2; index++) {
-                for (index2 = 0, len2 = distances.length; index2 < len2; index2++) {
-                    if (pivot[pivot.length - 1] < distances[index2] && distances[index2] < 100) {
-                        number_of_people[pivot.length - 1]++;
-                        continue;
-                    }
-                    if (pivot[index] < distances[index2] && distances[index2] < pivot[index + 1]) {
-                        number_of_people[index]++;
-                    }
+        var pivot = new Array(0, 5, 10, 15);
+        var number_of_people = new Array(0, 0, 0, 0);
+        var number_of_resign_people = new Array(0, 0, 0, 0);
+        for (index = 0, len = pivot.length; index < len - 1; index++) {
+            for (index2 = 0, len2 = distances.length; index2 < len2; index2++) {
+                if (pivot[pivot.length - 1] < distances[index2]) {
+                    number_of_people[pivot.length - 1]++;
+                    continue;
+                }
+                if (pivot[index] < distances[index2] && distances[index2] < pivot[index + 1]) {
+                    number_of_people[index]++;
                 }
             }
-            for (index = 0, len = pivot.length; index < len - 2; index++) {
-                for (index2 = 0, len2 = resign_distances.length; index2 < len2; index2++) {
-                    if (pivot[pivot.length - 1] < resign_distances[index2] && resign_distances[index2] < 100) {
-                        number_of_people[pivot.length - 1]++;
-                        continue;
-                    }
-                    if (pivot[index] < resign_distances[index2] && resign_distances[index2] < pivot[index + 1]) {
-                        number_of_resign_people[index]++;
-                    }
+        }
+        for (index = 0, len = pivot.length; index < len - 1; index++) {
+            for (index2 = 0, len2 = resign_distances.length; index2 < len2; index2++) {
+                if (pivot[pivot.length - 1] < resign_distances[index2]) {
+                    number_of_people[pivot.length - 1]++;
+                    continue;
+                }
+                if (pivot[index] < resign_distances[index2] && resign_distances[index2] < pivot[index + 1]) {
+                    number_of_resign_people[index]++;
                 }
             }
-            localStorage.setItem('number_of_people', number_of_people);
+        }
+        localStorage.setItem('number_of_people', number_of_people);
         localStorage.setItem('number_of_resign_people', number_of_resign_people);
-        });
-       
+    });
 </script>
 @endsection

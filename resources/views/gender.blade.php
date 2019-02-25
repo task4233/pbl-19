@@ -4,9 +4,9 @@
 
 @section('content')
 <div class="chart">
-  <!-- chart.js -->
-    <canvas id="genderChart" style="height:100%"></canvas>
-  <!-- end -->
+    <!-- chart.js -->
+        <canvas id="genderChart" height="400"></canvas>
+    <!-- end -->
 </div>
 
 <script>
@@ -26,9 +26,8 @@
       datasets: [{
         // bg-color
         backgroundColor: [
-          @for($cnt=1; $cnt<18; ++$cnt)
-            "#{{ str_pad( dechex($cnt * (16777215/18)) , 6, "0", STR_PAD_LEFT) }}",
-	  @endfor
+            'rgba(236, 100, 75, 1)',
+            'rgba(165, 55, 253, 1)'
         ],
         // bg-color(on hover)
         //hoverBackgroundColor: [
@@ -50,7 +49,7 @@
       },
       legend: {
         display: true,
-        position: 'right',
+        position: 'top',
       },
       responsive: true,
       maintainAspectRatio: false,

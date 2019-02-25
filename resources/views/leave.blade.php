@@ -5,7 +5,7 @@
 @section('content')
 <div class="chart">
     <!-- chart.js -->
-    <canvas id="pieCanvas"></canvas>
+    <canvas id="pieCanvas" height="400"></canvas>
     <!-- end -->
 </div>
 <script>

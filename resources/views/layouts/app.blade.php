@@ -27,12 +27,6 @@
         .content {
             height: 100%;
         }
-
-        .chart {
-            height: 50%;
-            margin: 0 auto;
-        }
-
     </style>
 </head>
 
