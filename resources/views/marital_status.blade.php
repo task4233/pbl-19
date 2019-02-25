@@ -19,7 +19,7 @@
     data: {
       // labels
       labels: [
-        @foreach ($marital_statuses as $marital_status)
+        @foreach ($resigned_marital_statuses as $marital_status)
           "{{ $marital_status->marital_status }}",
         @endforeach
       ],
@@ -36,11 +36,29 @@
         //],
         // datas of graph
         data: [
-          @foreach ($marital_statuses as $marital_status)
+          @foreach ($emp_marital_statuses as $marital_status)
             {{ $marital_status->marital_status_cnt }},
           @endforeach
         ],
-      }],
+      },
+      {
+        // bg-color
+        backgroundColor: [
+         'rgba(3, 201, 169, 1)',
+         'rgba(230, 126, 34, 1)'
+        ],
+        // bg-color(on hover)
+        //hoverBackgroundColor: [
+
+        //],
+        // datas of graph
+        data: [
+          @foreach ($resigned_marital_statuses as $marital_status)
+            {{ $marital_status->marital_status_cnt }},
+          @endforeach
+        ],
+      }
+      ],
     },
     options: {
       title: {

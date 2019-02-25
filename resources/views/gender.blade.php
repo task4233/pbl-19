@@ -4,21 +4,20 @@
 
 @section('content')
 <div class="chart">
-    <!-- chart.js -->
-        <canvas id="genderChart" height="400"></canvas>
-    <!-- end -->
-</div>
+  <!-- chart.js -->
+    <canvas id="resignedGenderChart"></canvas>
+  <!-- end -->
 
 <script>
-  var ctx = document.getElementById("genderChart");
-  var genderChart = new Chart(ctx, {
+  var ctx = document.getElementById("resignedGenderChart");
+  var resignedGenderChart = new Chart(ctx, {
     // kind of grapheme_strpos
     type: 'doughnut',
     // data setting
     data: {
       // labels
       labels: [
-        @foreach ($genders as $gender)
+        @foreach ($resigned_genders as $gender)
           "{{ $gender->gender }}",
         @endforeach
       ],
@@ -39,7 +38,23 @@
             {{ $gender->gender_cnt }},
           @endforeach
         ],
-      }],
+      },{
+					// bg-color
+					backgroundColor: [
+            'rgba(236, 100, 75, 1)',
+            'rgba(165, 55, 253, 1)'
+					],
+					// bg-color(on hover)
+					//hoverBackgroundColor: [
+					
+					//],
+					// datas of graph
+					data: [
+							@foreach ($resigned_genders as $gender)
+							{{ $gender->gender_cnt }},
+							@endforeach
+					],
+			},],
     },
     options: {
       title: {

@@ -9,24 +9,25 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Niconne" rel="stylesheet">
     <style type="text/css">
-        html {
-            height: 100%;
-        }
-
-        body {
-            height: 100%;
-            margin: auto;
-            text-align: center;
-        }
-
-        .navbar-brand {
-            font-family: 'Niconne', cursive;
-            font-size: 30px;
-        }
-
-        .content {
-            height: 100%;
-        }
+      html {
+          height: 100%;
+      }
+      body {
+          height: 100%;
+          margin: auto;
+          text-align: center;
+      }
+    .navbar-brand {
+     font-family: 'Niconne', cursive;
+    font-size: 30px;
+ }
+.content {
+          height: 100%;
+		 }
+     .chart {
+         height: 100%;
+         margin: 0 auto;
+     }
     </style>
 </head>
 
