@@ -31,8 +31,9 @@ class LeaveController extends Controller
             return view('gender', compact('resigned_genders', 'emp_genders'));
             break;
         case "marital_status":
-            $marital_statuses = MaritalStatus::getMaritalStatuses();
-            return view('marital_status', ['marital_statuses' => $marital_statuses]);
+            $resigned_marital_statuses = MaritalStatus::getResignedMaritalStatuses();
+            $emp_marital_statuses = MaritalStatus::getEmpMaritalStatuses();
+	        return view('marital_status', compact('resigned_marital_statuses', 'emp_marital_statuses'));
             break;
         case "reason":
             $leaves = Leave::getDistinctReasons();
