@@ -5,12 +5,12 @@
 @section('content')
 <div class="chart">
     <!-- chart.js -->
-    <canvas id="pieCanvas" height="400"></canvas>
+    <canvas id="reasonChart" height="400"></canvas>
     <!-- end -->
 </div>
 <script>
-    var ctx = document.getElementById("pieCanvas");
-    var pieCanvas = new Chart(ctx, {
+    var ctx = document.getElementById("reasonCharts");
+    var reasonChart = new Chart(ctx, {
         // kind of graph
         type: 'doughnut',
         // data setting

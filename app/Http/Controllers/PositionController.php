@@ -12,7 +12,8 @@ class PositionController extends Controller
     }
 
     public function index(){
-        $positions = Position::getPositions();
-        return view('position', ['positions' => $positions]);
+        $resigned_positions = Position::getResignedPositions();
+        $emp_positions      = Position::getEmpPositions();
+        return view('position', compact('resigned_positions', 'emp_positions'));
     }
 }
