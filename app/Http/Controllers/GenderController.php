@@ -15,6 +15,6 @@ class GenderController extends Controller
     public function index(){
         $resigned_genders = Gender::getResignedGenders();
         $emp_genders      = Gender::getEmpGenders();
-        return view('gender', compact($resigned_genders, $emp_genders));
+        return view('gender', compact('resigned_genders', 'emp_genders'));
     }
 }

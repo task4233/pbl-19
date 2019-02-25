@@ -5,15 +5,18 @@
 @section('content')
 <div class="chart">
   <!-- chart.js -->
-    <canvas id="genderChart" style="height:100%"></canvas>
+    <canvas id="resignedGenderChart"></canvas>
   <!-- end -->
+</div>
+<div class="chart">
+		<canvas id="empGenderChart"></canvas>
 </div>
 
 <script>
-  var ctx = document.getElementById("genderChart");
-  var genderChart = new Chart(ctx, {
+  var ctx = document.getElementById("resignedGenderChart");
+  var resignedGenderChart = new Chart(ctx, {
     // kind of grapheme_strpos
-    type: 'bar',
+    type: 'doughnut',
     // data setting
     data: {
       // labels
@@ -24,23 +27,39 @@
       ],
       //dataset
       datasets: [{
-        // bg-color
-        backgroundColor: [
-          @for($cnt=1; $cnt<18; ++$cnt)
-            "#{{ str_pad( dechex($cnt * (16777215/18)) , 6, "0", STR_PAD_LEFT) }}",
-	  @endfor
-        ],
-        // bg-color(on hover)
-        //hoverBackgroundColor: [
-
-        //],
-        // datas of graph
-        data: [
-          @foreach ($resigned_genders as $gender)
-            {{ $gender->gender_cnt }},
-          @endforeach
-        ],
-      }],
+					// bg-color
+					backgroundColor: [
+							"orange",
+							"skyblue",
+					],
+					// bg-color(on hover)
+					//hoverBackgroundColor: [
+					
+					//],
+					// datas of graph
+					data: [
+							@foreach ($emp_genders as $gender)
+							{{ $gender->gender_cnt }},
+							@endforeach
+					],
+					
+      },{
+					// bg-color
+					backgroundColor: [
+							"orange",
+							"skyblue",
+					],
+					// bg-color(on hover)
+					//hoverBackgroundColor: [
+					
+					//],
+					// datas of graph
+					data: [
+							@foreach ($resigned_genders as $gender)
+							{{ $gender->gender_cnt }},
+							@endforeach
+					],
+			},],
     },
     options: {
       title: {
