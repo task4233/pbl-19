@@ -14,7 +14,11 @@
   ctx.style.height = 750;
   var pieCanvas = new Chart(ctx, {
     // kind of grapheme_strpos
+<<<<<<< HEAD
     type: 'bar',
+=======
+    type: 'doughnut',
+>>>>>>> 59f2a2ab32e4d2e63dbf9038805cc142fd93281a
     // data setting
     data: {
       // labels
