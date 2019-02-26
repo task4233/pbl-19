@@ -24,7 +24,7 @@
              ],
              //dataset
              datasets: [{
-                     label: 'Not resigned',
+                     label: 'All Employees(Left)',
                      borderColor: 'ghostwhite',
                      borderWidth: 1,
                      // bg-color
@@ -39,7 +39,7 @@
                          @endforeach
                      ],
                  },{
-                     label: 'Resigned',
+                     label: 'Resigned People(Right)',
                      borderColor: 'gray',
                      borderWidth: 1,
                      // bg-color
