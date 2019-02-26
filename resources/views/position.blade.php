@@ -18,39 +18,39 @@
      data: {
              // labels
              labels: [
-                 @foreach ($resigned_positions as $position)
-                 "{{ $position->position }}",
+                 @foreach ($resigned_positions_short as $key => $value)
+                 "{{ ucfirst($key) }}",
                  @endforeach
              ],
              //dataset
              datasets: [{
-                     label: 'All Employees(Left)',
+                     label: 'Not resigned',
                      borderColor: 'ghostwhite',
                      borderWidth: 1,
                      // bg-color
                      backgroundColor: [
-                         @for ($hue=0;$hue<count($resigned_positions);++$hue)
-                         "hsl(" + {{ $hue*360/count($emp_positions)}} + ", 70%, 45%)",
+                         @for ($hue=0;$hue<count($resigned_positions_short);++$hue)
+                         "hsl(" + {{ $hue*360/count($emp_positions_short)}} + ", 70%, 45%)",
                          @endfor
                      ],
                      data: [
-                         @foreach ($emp_positions as $position)
- {{ $position->position_cnt }},
+                         @foreach ($emp_positions_short as $key => $value)
+                            {{ $value }},
                          @endforeach
                      ],
                  },{
-                     label: 'Resigned People(Right)',
+                     label: 'Resigned',
                      borderColor: 'gray',
                      borderWidth: 1,
                      // bg-color
                      backgroundColor: [
-                         @for ($hue=0;$hue<count($resigned_positions);++$hue)
-                         "hsl(" + {{ $hue*360/count($emp_positions)}} + ", 50%, 40%)",
+                         @for ($hue=0;$hue<count($resigned_positions_short);++$hue)
+                         "hsl(" + {{ $hue*360/count($emp_positions_short)}} + ", 50%, 40%)",
                          @endfor
                      ],
                      data: [
-                         @foreach ($resigned_positions as $position)
- {{ $position->position_cnt }},
+                         @foreach ($resigned_positions_short as $key => $value)
+                            {{ $value }},
                          @endforeach
                      ],
                  }],
