@@ -25,7 +25,7 @@
              //dataset
              datasets: [{
                      label: 'Resigned People',
-                     borderColor: 'white',
+                     borderColor: 'ghostwhite',
                      borderWidth: 1,
                      // bg-color
                      backgroundColor: [
@@ -40,12 +40,12 @@
                      ],
                  },{
                      label: 'All Employee People',
-                     borderColor: 'white',
+                     borderColor: 'gray',
                      borderWidth: 1,
                      // bg-color
                      backgroundColor: [
                          @for ($hue=0;$hue<count($resigned_positions);++$hue)
-                         "hsl(" + {{ $hue*360/count($emp_positions)}} + ", 80%, 40%)",
+                         "hsl(" + {{ $hue*360/count($emp_positions)}} + ", 50%, 40%)",
                          @endfor
                      ],
                      data: [
@@ -59,6 +59,13 @@
              legend: {
                  display: true,
                  position: 'top',
+             },
+             xAxis: {
+         plotLines: [{
+                     color: 'red',
+                     width: 2,
+                     value: {{ $avg_resigned_positions }},
+                     }]
              },
              responsive: true,
              maintainAspectRatio: false,

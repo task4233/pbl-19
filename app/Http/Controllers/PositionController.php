@@ -15,19 +15,20 @@ class PositionController extends Controller
         // normal graph
         $resigned_positions = Position::getResignedPositions();
         self::fill_resigned_data($resigned_positions);
-        $avg_resigned_positions = $resigned_positions->avg();
+        $avg_resigned_positions = self::get_avg($resigned_positions);
         // $summarized_resigned_positions = self::summarize_positions_graph($resigned_positions);
 
         $emp_positions      = Position::getEmpPositions();
         self::fill_emp_data($emp_positions);
-        $avg_resigned_positions = $emp_positions->avg();
+        $avg_emp_positions = self::get_avg($emp_positions);
+        //dd($avg_resigned_positions);
         // $summarized_emp_positions = self::summarize_positions_graph($emp_positions);
 
         // summarized graph
 
-        
 
-        return view('position', compact('resigned_positions', 'emp_positions'));
+
+        return view('position', compact('resigned_positions', 'avg_resigned_positions', 'emp_positions'));
     }
 
     private function collection_insert(&$collection, $position, $insert)
@@ -128,4 +129,12 @@ class PositionController extends Controller
         return $arr;
     }
 
+    private function get_avg($datas){
+        $res_avg = 0;
+        foreach ($datas as $data){
+            $res_avg += $data->position_cnt;
+        }
+        $res_avg /= count($datas);
+        return $res_avg;
+    }
 }
