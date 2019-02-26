@@ -19,10 +19,13 @@
         '<= 25', '25-30', '30-35', '>= 35'
       ],
       datasets: [{
-        label: 'All Employees(Left)',
-        backgroundColor: 'rgba(255, 120, 55, 0.5)',
-        borderColor: 'rgb(255, 120, 55)',
+        borderColor: 'ghostwhite',
         borderWidth: 1,
+        backgroundColor: [
+          @for ($hue=0;$hue<count($emp_result);++$hue)
+            "hsl(" + {{ $hue*360/count($emp_result)}} + ", 70%, 45%)",
+          @endfor
+        ],
         data: [
           @foreach ($emp_result as $key => $value)
             {{ $value }},
@@ -30,10 +33,13 @@
         ],
       },
       {
-        label: 'Resigned People(Right)',
-        backgroundColor: 'rgba(120, 120, 255, 0.5)',
-        borderColor:'rgba(120, 120, 55)',
+        borderColor: 'gray',
         borderWidth: 1,
+        backgroundColor: [
+          @for ($hue=0;$hue<count($resigned_result);++$hue)
+            "hsl(" + {{ $hue*360/count($resigned_result)}} + ", 50%, 40%)",
+          @endfor
+        ],
         data: [
           @foreach ($resigned_result as $key => $value)
             {{ $value }},
@@ -44,8 +50,13 @@
     },
     options: {
       legend: {
+        display: false,
+      },
+      title: {
         display: true,
         position: 'top',
+        text: 'All Employees(Left)/ Resigned People(Right)',
+        fontSize: 30,
       },
       responsive: true,
       maintainAspectRatio: false,
