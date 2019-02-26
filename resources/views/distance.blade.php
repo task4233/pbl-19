@@ -38,7 +38,11 @@
             options: {
                 responsive: true,
                 legend: {
+                    display: true,
                     position: 'top',
+                    labels: {
+                     fontSize: 30,
+                 },
                 }
             }
         });
