@@ -64,14 +64,19 @@
                  },
              },
              xAxis: {
-         plotLines: [{
-                     color: 'red',
-                     width: 2,
-                     value: {{ $avg_resigned_positions }},
+                 plotLines: [{
+                         color: 'red',
+                         width: 2,
+                         value: {{ $avg_resigned_positions }},
                      }]
              },
              responsive: true,
              maintainAspectRatio: false,
+             plugins: {
+                 datalabels: {
+                     color: 'ghostwhite',
+                 }
+             },
      }
      });
 </script>

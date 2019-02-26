@@ -50,6 +50,11 @@
             },
             responsive: true,
             maintainAspectRatio: false,
+            plugins: {
+                 datalabels: {
+                     color: 'ghostwhite',
+                 }
+             },
         }
     })
 </script>
