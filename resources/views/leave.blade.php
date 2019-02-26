@@ -48,6 +48,11 @@ var reasonChart = new Chart(ctx, {
             },
             responsive: true,
             maintainAspectRatio: false,
+            plugins: {
+                 datalabels: {
+                     color: 'ghostwhite',
+                 }
+             },
         }
  })
 </script>

@@ -10,33 +10,21 @@
 <script>
   var ctx = document.getElementById("pieCanvas");
   var pieCanvas = new Chart(ctx, {
-    // kind of grapheme_strpos
     type: 'bar',
-    // data setting
     data: {
-      // labels
       labels: [
           @foreach ($resigned_result as $age => $cnt)
  "{{ $age }}",
           @endforeach
       ],
-      //dataset
       datasets: [{
-        label: 'All Employees(Left)',
-        // bg-color
         borderColor: 'ghostwhite',
         borderWidth: 1,
-        // bg-color
         backgroundColor: [
           @for ($hue=0;$hue<count($emp_result);++$hue)
             "hsl(" + {{ $hue*360/count($emp_result)}} + ", 70%, 45%)",
           @endfor
         ],
-        // bg-color(on hover)
-        //hoverBackgroundColor: [
-
-        //],
-        // datas of graph
         data: [
           @foreach ($emp_result as $key => $value)
             {{ $value }},
@@ -44,21 +32,13 @@
         ],
       },
       {
-        label: 'Resigned People(Right)',
-        // bg-color
         borderColor: 'gray',
         borderWidth: 1,
-        // bg-color
         backgroundColor: [
           @for ($hue=0;$hue<count($resigned_result);++$hue)
             "hsl(" + {{ $hue*360/count($resigned_result)}} + ", 50%, 40%)",
           @endfor
         ],
-        // bg-color(on hover)
-        //hoverBackgroundColor: [
-
-        //],
-        // datas of graph
         data: [
           @foreach ($resigned_result as $key => $value)
             {{ $value }},
@@ -69,8 +49,13 @@
     },
     options: {
       legend: {
+        display: false,
+      },
+      title: {
         display: true,
         position: 'top',
+        text: 'All Employees(Left)/ Resigned People(Right)',
+        fontSize: 30,
       },
       responsive: true,
       maintainAspectRatio: false,

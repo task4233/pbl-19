@@ -10,11 +10,9 @@
 <script>
  var ctx = document.getElementById("positionChart");
  var positionChart = new Chart(ctx, {
-     // kind of grapheme_strpos
      type: 'bar',
-     // data setting
      data: {
-             // labels
+     // labels
              labels: [
                  @foreach ($resigned_positions_short as $key => $value)
                  "{{ ucfirst($key) }}",
@@ -62,19 +60,38 @@
                          @endforeach
                      ],
                  }],
+
          },
      options: {
-             legend: {
-                 display: true,
-                 position: 'top',
-                 labels: {
-                     fontSize: 30,
-                 },
+            legend: {
+                display: false,
+                position: 'top',
+                labels: {
+                    fontSize: 30,
+                },
+            },
+            title: {
+                display: true,
+                position: 'top',
+                text: 'All Employees(Left)/ Resigned People(Right)',
+                fontSize: 30,
+            },
+            xAxis: {
+                plotLines: [{
+                    color: 'red',
+                    width: 2,
+                    value: {{ $avg_resigned_positions }},
+                }]
              },
-             responsive: true,
-             maintainAspectRatio: false,
-     }
-     });
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                datalabels: {
+                    color: 'ghostwhite',
+                }
+            },
+    }
+    });
 </script>
 @endsection
 
