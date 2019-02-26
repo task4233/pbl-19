@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Collection;
 use App\Models\Position;
+use Illuminate\Support\Str;
 
 class PositionController extends Controller
 {
@@ -26,9 +27,57 @@ class PositionController extends Controller
 
         // summarized graph
 
-
-
-        return view('position', compact('resigned_positions', 'avg_resigned_positions', 'emp_positions'));
+        $resigned_positions_short = [
+            'fresher' => 0,
+            'junior' => 0,
+            'senior' => 0,
+            'leader' => 0,
+            'expert' => 0,
+            'manager' => 0,
+            'other' => 0
+        ];
+        $emp_positions_short = $resigned_positions_short;
+        foreach ($resigned_positions as $item) {
+            $pos = $item->position;
+            $counter =  $item->position_cnt;
+            // $temp[$pos] = $pos_cnt;
+            if (Str::contains($pos, 'Fresher') || Str::contains($pos, 'fresher')) {
+                $resigned_positions_short['fresher'] += $counter;
+            } else if (Str::contains($pos, 'junior') || Str::contains($pos, 'Junior')) {
+                $resigned_positions_short['junior'] += $counter;
+            } else if (Str::contains($pos, 'senior') || Str::contains($pos, 'Senior')) {
+                $resigned_positions_short['senior'] += $counter;
+            } else if (Str::contains($pos, 'leader') || Str::contains($pos, 'Leader')) {
+                $resigned_positions_short['leader'] += $counter;
+            } else if (Str::contains($pos, 'expert') || Str::contains($pos, 'Expert')) {
+                $resigned_positions_short['expert'] += $counter;
+            } else if (Str::contains($pos, 'PM') || Str::contains($pos, 'DM') || Str::contains($pos, 'Manager')) {
+                $resigned_positions_short['manager'] += $counter;
+            } else {
+                $resigned_positions_short['other'] += $counter;
+            } 
+        }
+        foreach ($emp_positions as $item) {
+            $pos = $item->position;
+            $counter =  $item->position_cnt;
+            // $temp[$pos] = $pos_cnt;
+            if (Str::contains($pos, 'Fresher') || Str::contains($pos, 'fresher')) {
+                $emp_positions_short['fresher'] += $counter;
+            } else if (Str::contains($pos, 'junior') || Str::contains($pos, 'Junior')) {
+                $emp_positions_short['junior'] += $counter;
+            } else if (Str::contains($pos, 'senior') || Str::contains($pos, 'Senior')) {
+                $emp_positions_short['senior'] += $counter;
+            } else if (Str::contains($pos, 'leader') || Str::contains($pos, 'Leader')) {
+                $emp_positions_short['leader'] += $counter;
+            } else if (Str::contains($pos, 'expert') || Str::contains($pos, 'Expert')) {
+                $emp_positions_short['expert'] += $counter;
+            } else if (Str::contains($pos, 'PM') || Str::contains($pos, 'DM') || Str::contains($pos, 'Manager')) {
+                $emp_positions_short['manager'] += $counter;
+            } else {
+                $emp_positions_short['other'] += $counter;
+            } 
+        }
+        return view('position', compact('resigned_positions_short', 'avg_resigned_positions', 'emp_positions_short'));
     }
 
     private function collection_insert(&$collection, $position, $insert)
