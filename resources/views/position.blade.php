@@ -24,7 +24,7 @@
              ],
              //dataset
              datasets: [{
-                     label: 'Not resigned',
+                     label: 'All Employees(Left)',
                      borderColor: 'ghostwhite',
                      borderWidth: 1,
                      // bg-color
@@ -39,7 +39,7 @@
                          @endforeach
                      ],
                  },{
-                     label: 'Resigned',
+                     label: 'Resigned People(Right)',
                      borderColor: 'gray',
                      borderWidth: 1,
                      // bg-color
@@ -64,14 +64,19 @@
                  },
              },
              xAxis: {
-         plotLines: [{
-                     color: 'red',
-                     width: 2,
-                     value: {{ $avg_resigned_positions }},
+                 plotLines: [{
+                         color: 'red',
+                         width: 2,
+                         value: {{ $avg_resigned_positions }},
                      }]
              },
              responsive: true,
              maintainAspectRatio: false,
+             plugins: {
+                 datalabels: {
+                     color: 'ghostwhite',
+                 }
+             },
      }
      });
 </script>
