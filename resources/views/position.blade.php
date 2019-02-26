@@ -25,6 +25,8 @@
              //dataset
              datasets: [{
                      label: 'Not resigned',
+                     borderColor: 'ghostwhite',
+                     borderWidth: 1,
                      // bg-color
                      backgroundColor: [
                          @for ($hue=0;$hue<count($resigned_positions_short);++$hue)
@@ -38,6 +40,8 @@
                      ],
                  },{
                      label: 'Resigned',
+                     borderColor: 'gray',
+                     borderWidth: 1,
                      // bg-color
                      backgroundColor: [
                          @for ($hue=0;$hue<count($resigned_positions_short);++$hue)
@@ -55,6 +59,9 @@
              legend: {
                  display: true,
                  position: 'top',
+                 labels: {
+                     fontSize: 30,
+                 },
              },
              xAxis: {
          plotLines: [{

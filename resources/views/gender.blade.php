@@ -23,10 +23,13 @@
       ],
       //dataset
       datasets: [{
+                      label: 'All Employees(Outer Circle)',
+                      borderCoder: 'ghostwhite',
+                      borderWidth: 1,
                       // bg-color
         backgroundColor: [
-            'rgba(236, 100, 75, 1)',
-            'rgba(165, 55, 253, 1)'
+            'pink',
+            'skyblue',
         ],
         // bg-color(on hover)
         //hoverBackgroundColor: [
@@ -34,15 +37,18 @@
         //],
         // datas of graph
         data: [
-          @foreach ($emp_genders as $gender)
-            {{ $gender->gender_cnt }},
-          @endforeach
+            @foreach ($emp_genders as $gender)
+  {{ $gender->gender_cnt }},
+            @endforeach
         ],
-         },{
+                  },{
+                      label: 'Resigned People(inner Circle)',
+                      borderCoder: 'gray',
+                      borderWidth: 1,
                       // bg-color
                       backgroundColor: [
-            'rgba(236, 100, 75, 1)',
-            'rgba(165, 55, 253, 1)'
+                          'pink',
+                          'skyblue',
 					],
 					// bg-color(on hover)
 					//hoverBackgroundColor: [
@@ -60,6 +66,15 @@
       legend: {
         display: true,
         position: 'top',
+        labels: {
+                      fontSize: 30,
+                  },
+      },
+      title: {
+                  display: true,
+                  position: 'top',
+                  text: 'All Employees(Outer Circle)/ Resigned People(Inner Circle)',
+                  fontSize: 30,
       },
       responsive: true,
       maintainAspectRatio: false,
