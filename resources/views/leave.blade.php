@@ -44,6 +44,9 @@
             legend: {
                 display: true,
                 position: 'top',
+                labels: {
+                        fontSize: 20,
+                    },
             },
             responsive: true,
             maintainAspectRatio: false,
