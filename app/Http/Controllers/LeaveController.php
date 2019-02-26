@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Leave;
-use Illuminate\Http\Request;
 
 class LeaveController extends Controller
 {
@@ -13,9 +12,15 @@ class LeaveController extends Controller
 
     }
 
-    public function index(Request $request)
+    public function index()
     {
         $leaves = Leave::getDistinctReasons();
+        $reason_types = self::summarize_reasons_graph($leaves);
+        
+        return view('leave', compact('reason_types'));
+    }
+
+        private function summarize_reasons_graph($datas){
         $arr = [];
         $trans = [
             'CareerPath' => 'Going abroad',
@@ -40,17 +45,18 @@ class LeaveController extends Controller
             'Sang CW JP' => 'Going abroad',
             'Nghỉ đột xuất' => 'Personal issues'
         ];
-        //dd(array_key_exists($trans['Sang CW JP'], $arr));
-        foreach ($leaves as $leave) {
-            $reason = trim($leave->reason_type);
-            $count = $leave->reason_cnt;
-            if ($arr && array_key_exists($trans[$reason], $arr) == true) {
-                $arr[$trans[$reason]] += $count;
+
+        foreach ($datas as $data) {
+            $item = trim($data->reason_type);
+            $cnt = $data->reason_cnt;
+            if ($arr && array_key_exists($trans[$item], $arr) == true) {
+                $arr[$trans[$item]] += $cnt;
             } else {
-                $arr += array($trans[$reason]=>$count);
-                $arr[$trans[$reason]] = $count;
+                $arr += array($trans[$item]=>$cnt);
+                $arr[$trans[$item]] = $cnt;
             }
         }
-        return view('leave', ['reason_types' => $arr]);
+        return $arr;
     }
+
 }
