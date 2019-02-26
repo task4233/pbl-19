@@ -52,21 +52,29 @@
 <body>
     @include('layouts.nav')
     
-    <h1>@yield('title')</h1>
+    <h1 style="font-size:60px;">@yield('title')</h1>
 	
 		<div class="container">
 				@yield('chart')
 		</div>
 
 		<div class="container">
+				<h1>Results</h1>
 				@yield('table')
 	  </div>
 
 		<div class="container">
+				<h1>Study from Chart</h1>
 				@yield('study')
+		</div>
+		
+		<div class="container">
+				<h1>Discuss @yield('title')</h1>
+				@yield('discuss')
 		</div>
 
     <div class="container ">
+				<h1>Heading Conclusion</h1>
         @yield('content')
     </div>
 

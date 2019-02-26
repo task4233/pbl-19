@@ -20,12 +20,12 @@ class LeaveController extends Controller
             $sort[$reason_cnt] = $reason_cnt;
         }
         array_multisort($sort, SORT_DESC, $reason_types);
-        $all_reason_cnt = 0;
+        $all_cnt = 0;
         foreach ($reason_types as $reason_type => $reason_cnt) {
-            $all_reason_cnt += $reason_cnt;
+            $all_cnt += $reason_cnt;
         }
         
-        return view('leave', compact('reason_types', 'all_reason_cnt'));
+        return view('leave', compact('reason_types', 'all_cnt'));
     }
 
     private function summarize_reasons_graph($datas){

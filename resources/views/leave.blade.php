@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Reason types')
+@section('title', 'Reason Types')
 
 @section('chart')
     <!-- chart.js -->
-    <canvas id="reasonChart" height="400"></canvas>
+    <canvas id="reasonChart" height=400></canvas>
     <!-- end -->
 <script>
     var ctx = document.getElementById("reasonChart");
@@ -54,7 +54,6 @@ var reasonChart = new Chart(ctx, {
 @endsection
 
 @section('table')
-<h1>Results</h1>
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -71,30 +70,41 @@ var reasonChart = new Chart(ctx, {
 <th scope="row"><?php echo $num++; ?></th>
     <td>{{ $reason_type }}</td>
     <td>{{ $reason_cnt }}</td>
-<td>{{ round(($reason_cnt * 100.0 / $all_reason_cnt), 2, PHP_ROUND_HALF_DOWN) }}%</td>
+<td>{{ round(($reason_cnt * 100.0 / $all_cnt), 2, PHP_ROUND_HALF_DOWN) }}%</td>
   </tr>
 </script>
 @endforeach
+    <tr>
+<th scope="row">All</th>
+    <td></td>
+    <td>{{$all_cnt}}</td>
+    <td>100%</td>
+  </tr>
+
 </tbody>
 </table>
 @endsection
 
 @section('study')
-<h1>Study from the chart</h1>
 <ul>
   <li>The main reason is <u>"Personal Issues"</u> (80.28%)</li>
+</ul>
+@endsection
+
+@section('discuss')
+<ul>
   <li>"Personal Issues" are <u>containing a lot of other reasons</u>.</li>
   <li>The database does not have details about "Personal Issues".</li>
   <li>It is hard to see from this chart.</li>
 </ul>
 @endsection
-
+ 
 @section('content')
-<h1>Heading Conclusion</h1>
 <ul class="conclusion">
   <li>We cannot specify "Personal Issues".</li>
 </ul>
 @endsection
+
 
 @section('footer')
     (c) thinking_face
