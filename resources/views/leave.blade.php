@@ -2,12 +2,10 @@
 
 @section('title', 'Reason types')
 
-@section('content')
-<div class="chart">
+@section('chart')
     <!-- chart.js -->
     <canvas id="reasonChart" height="400"></canvas>
     <!-- end -->
-</div>
 <script>
     var ctx = document.getElementById("reasonChart");
 var reasonChart = new Chart(ctx, {
@@ -53,14 +51,49 @@ var reasonChart = new Chart(ctx, {
         }
  })
 </script>
+@endsection
 
+@section('table')
+<h1>Results</h1>
+<table class="table table-bordered">
+<thead>
+<tr>
+  <th scope="col">Rank</th>
+  <th scope="col">Details</th>
+  <th scope="col">Numbers</th>
+  <th scope="col">Proportions</th>
+</tr>
+</thead>
+<tbody>
+<?php $num = 1; ?>
+@foreach ($reason_types as $reason_type => $reason_cnt)
+  <tr>
+<th scope="row"><?php echo $num++; ?></th>
+    <td>{{ $reason_type }}</td>
+    <td>{{ $reason_cnt }}</td>
+<td>{{ round(($reason_cnt * 100.0 / $all_reason_cnt), 2, PHP_ROUND_HALF_DOWN) }}%</td>
+  </tr>
+</script>
+@endforeach
+</tbody>
+</table>
+@endsection
+
+@section('study')
+<h1>Study from the chart</h1>
+<ul>
+  <li>The main reason is <u>"Personal Issues"</u> (80.28%)</li>
+  <li>"Personal Issues" are <u>containing a lot of other reasons</u>.</li>
+  <li>The database does not have details about "Personal Issues".</li>
+  <li>It is hard to see from this chart.</li>
+</ul>
+@endsection
+
+@section('content')
 <h1>Heading Conclusion</h1>
-<p>
-		The main reason is "Personal Issues"(114/142): 80.28%.<br>
-		It is hard to see from this chart.<br>
-		That is because, "Personal Issues" are containing a lot of other reasons.<br>
-		Thus, We have to specify the details.
-</p>
+<ul class="conclusion">
+  <li>We cannot specify "Personal Issues".</li>
+</ul>
 @endsection
 
 @section('footer')

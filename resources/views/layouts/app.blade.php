@@ -7,44 +7,69 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Niconne" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Niconne" rel="stylesheet">    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
     <style type="text/css">
       html {
-          background-color: #E1E1E1;
           height: 100%;
       }
       body {
-          background-color: #E1E1E1;
+          font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
           height: 100%;
           margin: auto;
-          text-align: center;
+					letter-spacing: .1em;
+					line-height: 1.65;
+					font-size: 30px;
       }
-    .navbar-brand {
+		 h1 {
+				 text-align: center;
+		 }
+     .navbar-brand {
         font-family: 'Niconne', cursive;
         font-size: 30px;
      }
-     .content {
+     .container {
+				 margin: 5% auto;
          background-color: #E1E1E1;
-         height: 100%;
+				 padding: 2%;
       }
       .chart {
+					background-color: #E1E1E1;
+					width: 85%;
           height: 80%;
           margin: 0 auto;
-       }
+					padding: 2%
+      }
+		  table {
+					background-color: white; 
+			}
+		 .conclusion {
+				 text-decoration: underline;
+		 }
     </style>
 </head>
 
-<body class="body">
+<body>
     @include('layouts.nav')
     
     <h1>@yield('title')</h1>
 	
-    <div class="content">
+		<div class="container">
+				@yield('chart')
+		</div>
+
+		<div class="container">
+				@yield('table')
+	  </div>
+
+		<div class="container">
+				@yield('study')
+		</div>
+
+    <div class="container ">
         @yield('content')
     </div>
-    <div class="footer">
-        @yield('footer')
-    </div>
+
     <!-- load scripts-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
