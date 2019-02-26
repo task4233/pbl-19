@@ -14,16 +14,24 @@ class PositionController extends Controller
 
     public function index(){
         // normal graph
-        $resigned_positions = Position::getResignedPositions();
-        self::fill_resigned_data($resigned_positions);
+        $all_resigned_cnt = 0;
+        $resigned_positions = Position::getResignedPositions()->sortByDesc('position_cnt');
+        $resigned_filled_positions = self::fill_resigned_data($resigned_positions);
         $avg_resigned_positions = self::get_avg($resigned_positions);
         // $summarized_resigned_positions = self::summarize_positions_graph($resigned_positions);
+        foreach ($resigned_positions as $position){
+            $all_resigned_cnt += $position->position_cnt;
+        }
 
+        $all_emp_cnt = 0;
         $emp_positions      = Position::getEmpPositions();
-        self::fill_emp_data($emp_positions);
+        $emp_filled_positions = self::fill_emp_data($emp_positions);
         $avg_emp_positions = self::get_avg($emp_positions);
         //dd($avg_resigned_positions);
         // $summarized_emp_positions = self::summarize_positions_graph($emp_positions);
+        foreach ($emp_positions as $position){
+            $all_emp_cnt += $position->position_cnt;
+        }
 
         // summarized graph
 
@@ -37,7 +45,7 @@ class PositionController extends Controller
             'other' => 0
         ];
         $emp_positions_short = $resigned_positions_short;
-        foreach ($resigned_positions as $item) {
+        foreach ($resigned_filled_positions as $item) {
             $pos = $item->position;
             $counter =  $item->position_cnt;
             // $temp[$pos] = $pos_cnt;
@@ -57,7 +65,7 @@ class PositionController extends Controller
                 $resigned_positions_short['other'] += $counter;
             } 
         }
-        foreach ($emp_positions as $item) {
+        foreach ($emp_filled_positions as $item) {
             $pos = $item->position;
             $counter =  $item->position_cnt;
             // $temp[$pos] = $pos_cnt;
@@ -77,7 +85,19 @@ class PositionController extends Controller
                 $emp_positions_short['other'] += $counter;
             } 
         }
-        return view('position', compact('resigned_positions_short', 'avg_resigned_positions', 'emp_positions_short'));
+
+        // foreach((array) $resigned_positions_short as $position => $cnt) {
+        //     $sort[$cnt] = $cnt;
+        // }
+        // array_multisort($sort, SORT_DESC, $resigned_positions_short);
+
+        // foreach((array) $emp_positions_short as $position => $cnt) {
+        //     $sort[$cnt] = $cnt;
+        // }
+        // array_multisort($sort, SORT_DESC, $emp_positions_short);
+        
+
+        return view('position', compact('resigned_positions_short', 'resigned_positions', 'emp_positions_short', 'emp_positions', 'all_emp_cnt', 'all_resigned_cnt'));
     }
 
     private function collection_insert(&$collection, $position, $insert)
@@ -89,7 +109,7 @@ class PositionController extends Controller
         }
     }
 
-    private function fill_resigned_data(&$resigned_positions){
+    private function fill_resigned_data($resigned_positions){
         // Expert Designer
         self::collection_insert($resigned_positions, 5,(object)[
             "position_cnt" => 0,
@@ -113,9 +133,11 @@ class PositionController extends Controller
             "position_cnt" => 0,
             "position" => "Senior QAL"
         ]);
+
+        return $resigned_positions;
     }
 
-    private function fill_emp_data(&$emp_positions){        
+    private function fill_emp_data($emp_positions){        
         // Expert Designer
         self::collection_insert($emp_positions, 3, (object)[
             "position_cnt" => 0,
@@ -157,6 +179,8 @@ class PositionController extends Controller
             "position_cnt" => 0,
             "position" => "Tec-Specialist"
         ]);
+        
+        return $emp_positions;
     }
 
     private function summarize_positions_graph($datas){

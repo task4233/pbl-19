@@ -2,11 +2,10 @@
 
 @section('title', 'Gender')
 
-@section('content')
-<div class="chart">
-  <!-- chart.js -->
-    <canvas id="genderChart"></canvas>
-  <!-- end -->
+@section('chart')
+    <!-- chart.js -->
+    <canvas id="genderChart" height=400></canvas>
+    <!-- end -->
 
 <script>
   var ctx = document.getElementById("genderChart");
@@ -28,8 +27,8 @@
                       borderWidth: 1,
                       // bg-color
         backgroundColor: [
-            'pink',
             'skyblue',
+            'pink',
         ],
         // bg-color(on hover)
         //hoverBackgroundColor: [
@@ -47,8 +46,8 @@
                       borderWidth: 1,
                       // bg-color
                       backgroundColor: [
-                          'pink',
                           'skyblue',
+                          'pink',
 					],
 					// bg-color(on hover)
 					//hoverBackgroundColor: [
@@ -81,13 +80,101 @@
     }
   });
 </script>
+@endsection
 
-<h1>Heading Conclusion</h1>
-<p>
-write something.
-</p>
+@section('table')
+<h2>Resigned People</h2>
+<table class="table table-bordered">
+<thead>
+<tr>
+  <th scope="col">Rank</th>
+  <th scope="col">Details</th>
+  <th scope="col">Numbers</th>
+  <th scope="col">Proportions</th>
+</tr>
+</thead>
+<tbody>
+<?php $num = 1; ?>
+@foreach ($resigned_genders as $gender)
+  <tr>
+<th scope="row"><?php echo $num++; ?></th>
+    <td>{{ $gender->gender }}</td>
+    <td>{{ $gender->gender_cnt }}</td>
+<td>{{ round(($gender->gender_cnt * 100.0 / $all_resigned_cnt), 2, PHP_ROUND_HALF_DOWN) }}%</td>
+  </tr>
+</script>
+@endforeach
+  <tr>
+  <th scope="row">All</th>
+    <td></td>
+    <td>{{$all_resigned_cnt}}</td>
+    <td>100%</td>
+  </tr>
+  <tr>
+  <th scope="row">Diff</th>
+    <td></td>
+    <td></td>
+    <td>{{76.56-23.44}}%</td>
+  </tr>
+</tbody>
+</table>
+
+<h2>All Employees</h1>
+<table class="table table-bordered">
+<thead>
+<tr>
+  <th scope="col">Rank</th>
+  <th scope="col">Details</th>
+  <th scope="col">Numbers</th>
+  <th scope="col">Proportions</th>
+</tr>
+</thead>
+<tbody>
+<?php $num = 1; ?>
+@foreach ($emp_genders as $gender)
+  <tr>
+<th scope="row"><?php echo $num++; ?></th>
+    <td>{{ $gender->gender }}</td>
+    <td>{{ $gender->gender_cnt }}</td>
+<td>{{ round(($gender->gender_cnt * 100.0 / $all_emp_cnt), 2, PHP_ROUND_HALF_DOWN) }}%</td>
+  </tr>
+</script>
+@endforeach
+    <tr>
+<th scope="row">All</th>
+    <td></td>
+    <td>{{$all_emp_cnt}}</td>
+    <td>100%</td>
+  </tr>
+  <tr>
+  <th scope="row">Diff</th>
+    <td></td>
+    <td></td>
+    <td>{{59.72-40.28}}%</td>
+  </tr>
+</tbody>
+</table>
+@endsection
+
+@section('study')
+<ul>
+  <li>"Male" have hight off work rate compared to "Female". (76.56%)</li>
+<li>Compared with the rate with all employees, the resigned one(76.56%) is more than all(59.72%).</li>
+</ul>
+@endsection
+
+@section('discuss')
+<ul>
+<li>The regime for women in Co-well might be equivalent.</li>
+</ul>
+@endsection
+
+@section('content')
+<ul>
+<li>Co-well creates a good work environment for the employees.</li>
+</ul>
 @endsection
 
 @section('footer')
-(c) 2019 hoge.
+(c) thinking_face.
 @endsection

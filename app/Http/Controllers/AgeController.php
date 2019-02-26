@@ -12,45 +12,49 @@ class AgeController extends Controller
     {
     }
 
-    public function index(){
+    public function index(){   
+        $all_emp_cnt = 0;
+        $all_resigned_cnt = 0;
+      
         $resigned_ages = Age::getResignedAges();
         $resigned_result = [
-            'range1' => 0, 
-            'range2' => 0, 
-            'range3' => 0, 
-            'range4' => 0, 
-            
+            '(0, 25]' => 0, 
+            '(25, 30]' => 0, 
+            '(30, 35]' => 0, 
+            '(35, inf]' => 0, 
         ];
         foreach ($resigned_ages as $item) {
             if ($item->age <= 25) {
-                $resigned_result['range1'] += $item->age_cnt;
+                $resigned_result['(0, 25]'] += $item->age_cnt;
             }  else if ($item->age > 25 && $item->age <= 30) {
-                $resigned_result['range2'] += $item->age_cnt;
+                $resigned_result['(25, 30]'] += $item->age_cnt;
             } else if ($item->age > 30 && $item->age <= 35) {
-                $resigned_result['range3'] += $item->age_cnt;
+                $resigned_result['(30, 35]'] += $item->age_cnt;
             } else if ($item->age > 35) {
-                $resigned_result['range4'] += $item->age_cnt;
+                $resigned_result['(35, inf]'] += $item->age_cnt;
             }
+            $all_resigned_cnt += $item->age_cnt;
         }
         $emp_ages = Age::getEmpAges();
         $emp_result = [
-            'range1' => 0, 
-            'range2' => 0, 
-            'range3' => 0, 
-            'range4' => 0, 
-            
+            '(0, 25]' => 0, 
+            '(25, 30]' => 0, 
+            '(30, 35]' => 0, 
+            '(35, inf]' => 0, 
         ];
         foreach ($emp_ages as $item) {
             if ($item->age <= 25) {
-                $emp_result['range1'] += $item->age_cnt;
+                $emp_result['(0, 25]'] += $item->age_cnt;
             }  else if ($item->age > 25 && $item->age <= 30) {
-                $emp_result['range2'] += $item->age_cnt;
+                $emp_result['(25, 30]'] += $item->age_cnt;
             } else if ($item->age > 30 && $item->age <= 35) {
-                $emp_result['range3'] += $item->age_cnt;
+                $emp_result['(30, 35]'] += $item->age_cnt;
             } else if ($item->age > 35) {
-                $emp_result['range4'] += $item->age_cnt;
+                $emp_result['(35, inf]'] += $item->age_cnt;
             }
+            $all_emp_cnt += $item->age_cnt;
         }
-	    return view('age', compact('resigned_result', 'emp_result'));
+       
+	    return view('age', compact('resigned_result', 'all_resigned_cnt', 'emp_result', 'all_emp_cnt'));
     }
 }
