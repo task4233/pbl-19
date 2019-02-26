@@ -63,6 +63,9 @@
       legend: {
         display: true,
         position: 'top',
+        labels: {
+                      fontSize: 30,
+        },
       },
       responsive: true,
       maintainAspectRatio: false,
