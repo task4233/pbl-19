@@ -5,14 +5,13 @@
 @section('content')
 <div class="chart">
   <!-- chart.js -->
-  <canvas id="pieCanvas" height="400"></canvas>
+  <canvas id="maritalStatus"></canvas>
   <!-- end -->
 </div>
 
 <script>
-  var ctx = document.getElementById("pieCanvas");
-  ctx.style.height = 750;
-  var pieCanvas = new Chart(ctx, {
+  var ctx = document.getElementById("maritalStatus");
+  var maritalStatus = new Chart(ctx, {
     // kind of grapheme_strpos
     type: 'doughnut',
     // data setting

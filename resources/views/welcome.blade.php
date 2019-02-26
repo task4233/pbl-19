@@ -1,11 +1,14 @@
 @extends('layouts.app')
+
 @section('title', 'Thinking_face')
+
 @section('content')
 <div class="container">
     <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/155/thinking-face_1f914.png" alt="">
 </div>
 <h3>Welcome to Thinking_face</h3>
 @endsection
+
 @section('scripts')
 <script>
     var resign_address_list = [

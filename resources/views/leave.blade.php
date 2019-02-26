@@ -5,12 +5,12 @@
 @section('content')
 <div class="chart">
     <!-- chart.js -->
-    <canvas id="pieCanvas" height="400"></canvas>
+    <canvas id="reasonChart" height="400"></canvas>
     <!-- end -->
 </div>
 <script>
-    var ctx = document.getElementById("pieCanvas");
-    var pieCanvas = new Chart(ctx, {
+    var ctx = document.getElementById("reasonChart");
+    var reasonChart = new Chart(ctx, {
         // kind of graph
         type: 'doughnut',
         // data setting
@@ -25,8 +25,8 @@
             datasets: [{
                     // bg-color
                     backgroundColor: [
-                        @for($cnt=1; $cnt<18; ++$cnt)
-                        "#{{ dechex($cnt * (16777215/18)) }}",
+                        @for ($hue=0;$hue<count($reason_types);++$hue)
+                        "hsl(" + {{ $hue*360/count($reason_types)}} + ", 70%, 45%)",
                         @endfor
                     ],
                     // bg-color(on hover)

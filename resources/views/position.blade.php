@@ -4,66 +4,81 @@
 
 @section('content')
 <div class="chart">
-  <!-- chart.js -->
-  <canvas id="DoughnatCanvas" height="400"></canvas>
-  <!-- end -->
+		<!-- chart.js -->
+		<canvas id="positionChart"></canvas>
+		<!-- end -->
 </div>
 
 <script>
-  var ctx = document.getElementById("DoughnatCanvas");
-  var DoughnatCanvas = new Chart(ctx, {
-    // kind of grapheme_strpos
-    type: 'bar',
-    // data setting
-    data: {
-      // labels
-      labels: [
-        @foreach ($positions as $position)
-          "{{ $position->position }}",
-        @endforeach
-      ],
-      //dataset
-      datasets: [{
-        // bg-color
-        backgroundColor: [
-            @for($cnt=1; $cnt<=count($positions); ++$cnt)
-            "#{{ str_pad( dechex(($cnt-1) * (16777215/count($positions))) , 6, "0", STR_PAD_LEFT) }}",
-	  @endfor
-        ],
-        // bg-color(on hover)
-        //hoverBackgroundColor: [
-
-        //],
-        // datas of graph
-        data: [
-          @foreach ($positions as $position)
-            {{ $position->position_cnt }},
-          @endforeach
-        ],
-      }],
-    },
-    options: {
-      title: {
-          display: true,
-          text: 'Position',
-          position: 'bottom',
-      },
-      legend: {
-        display: true,
-        position: 'right',
-      },
-      responsive: true,
-      maintainAspectRatio: false,
-    }
-  });
+ var ctx = document.getElementById("positionChart");
+ var positionChart = new Chart(ctx, {
+     // kind of grapheme_strpos
+     type: 'bar',
+     // data setting
+     data: {
+             // labels
+             labels: [
+                 @foreach ($resigned_positions as $position)
+                 "{{ $position->position }}",
+                 @endforeach
+             ],
+             //dataset
+             datasets: [{
+                     label: 'Resigned People',
+                     borderColor: 'ghostwhite',
+                     borderWidth: 1,
+                     // bg-color
+                     backgroundColor: [
+                         @for ($hue=0;$hue<count($resigned_positions);++$hue)
+                         "hsl(" + {{ $hue*360/count($emp_positions)}} + ", 70%, 45%)",
+                         @endfor
+                     ],
+                     data: [
+                         @foreach ($emp_positions as $position)
+ {{ $position->position_cnt }},
+                         @endforeach
+                     ],
+                 },{
+                     label: 'All Employee People',
+                     borderColor: 'gray',
+                     borderWidth: 1,
+                     // bg-color
+                     backgroundColor: [
+                         @for ($hue=0;$hue<count($resigned_positions);++$hue)
+                         "hsl(" + {{ $hue*360/count($emp_positions)}} + ", 50%, 40%)",
+                         @endfor
+                     ],
+                     data: [
+                         @foreach ($resigned_positions as $position)
+ {{ $position->position_cnt }},
+                         @endforeach
+                     ],
+                 }],
+         },
+     options: {
+             legend: {
+                 display: true,
+                 position: 'top',
+             },
+             xAxis: {
+         plotLines: [{
+                     color: 'red',
+                     width: 2,
+                     value: {{ $avg_resigned_positions }},
+                     }]
+             },
+             responsive: true,
+             maintainAspectRatio: false,
+     }
+     });
 </script>
 
 <h1>Heading Conclusion</h1>
 <p>
 write something.
-</p>
+    </p>
 @endsection
 
-@section('footer')
-(c) 2019 hoge.
-@endsection
+    @section('footer')
+    (c) 2019 hoge.
+    @endsection

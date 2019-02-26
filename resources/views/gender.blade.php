@@ -5,12 +5,12 @@
 @section('content')
 <div class="chart">
   <!-- chart.js -->
-    <canvas id="resignedGenderChart"></canvas>
+    <canvas id="genderChart"></canvas>
   <!-- end -->
 
 <script>
-  var ctx = document.getElementById("resignedGenderChart");
-  var resignedGenderChart = new Chart(ctx, {
+  var ctx = document.getElementById("genderChart");
+  var genderChart = new Chart(ctx, {
     // kind of grapheme_strpos
     type: 'doughnut',
     // data setting
