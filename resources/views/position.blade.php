@@ -76,13 +76,6 @@
                 text: 'All Employees(Left)/ Resigned People(Right)',
                 fontSize: 30,
             },
-            xAxis: {
-                plotLines: [{
-                    color: 'red',
-                    width: 2,
-                    value: {{ $avg_resigned_positions }},
-                }]
-             },
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
