@@ -2,11 +2,21 @@
 
 @section('title', 'Thinking_face')
 
-@section('content')
-<div class="container">
+@section('chart')
+    <div class="center">
     <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/155/thinking-face_1f914.png" alt="">
-</div>
-<h3>Welcome to Thinking_face</h3>
+    <h3>Welcome to Thinking_face</h3>
+    </div>
+@endsection
+
+@section('table')
+<ul>
+  <li>We have finished to make this page.</li>
+</ul>
+@endsection
+
+@section('study')
+
 @endsection
 
 @section('scripts')
