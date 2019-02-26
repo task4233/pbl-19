@@ -10,7 +10,7 @@
 </div>
 <script>
     var ctx = document.getElementById("reasonChart");
-    var reasonChart = new Chart(ctx, {
+var reasonChart = new Chart(ctx, {
         // kind of graph
         type: 'doughnut',
         // data setting
@@ -35,31 +35,34 @@
                     // datas of graph
                     data: [
                         @foreach ($reason_types as $reason_type => $reason_cnt)
-                            {{ $reason_cnt }},
+{{ $reason_cnt }},
                         @endforeach
                     ],
-                }],
+            }],
         },
-        options: {
+     options: {
             legend: {
                 display: true,
                 position: 'top',
                 labels: {
-                        fontSize: 20,
-                    },
+                    fontSize: 20,
+                },
             },
             responsive: true,
             maintainAspectRatio: false,
         }
-    })
+ })
 </script>
 
 <h1>Heading Conclusion</h1>
 <p>
-		write something.
+		The main reason is "Personal Issues"(114/142): 80.28%.<br>
+		It is hard to see from this chart.<br>
+		That is because, "Personal Issues" are containing a lot of other reasons.<br>
+		Thus, We have to specify the details.
 </p>
 @endsection
 
 @section('footer')
-    (c) 2019 hoge.
+    (c) thinking_face
 @endsection
