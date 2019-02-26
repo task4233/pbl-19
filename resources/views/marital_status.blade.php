@@ -63,6 +63,15 @@
       legend: {
         display: true,
         position: 'top',
+        labels: {
+                      fontSize: 30,
+        },
+      },
+      title: {
+                  display: true,
+                  position: 'top',
+                  text: 'All Employees(Outer Circle)/ Resigned People(Inner Circle)',
+                  fontSize: 30,
       },
       responsive: true,
       maintainAspectRatio: false,

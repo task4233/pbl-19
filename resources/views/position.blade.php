@@ -24,7 +24,7 @@
              ],
              //dataset
              datasets: [{
-                     label: 'Resigned People',
+                     label: 'All Employees(Left)',
                      borderColor: 'ghostwhite',
                      borderWidth: 1,
                      // bg-color
@@ -39,7 +39,7 @@
                          @endforeach
                      ],
                  },{
-                     label: 'All Employee People',
+                     label: 'Resigned People(Right)',
                      borderColor: 'gray',
                      borderWidth: 1,
                      // bg-color
@@ -59,6 +59,9 @@
              legend: {
                  display: true,
                  position: 'top',
+                 labels: {
+                     fontSize: 30,
+                 },
              },
              xAxis: {
          plotLines: [{
