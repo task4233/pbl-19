@@ -104,7 +104,7 @@
 <tr>
   <th scope="col">Range</th>
   <th scope="col">Numbers</th>
-  <th scope="col">Proportions</th>
+  <th scope="col">Proportion</th>
 </tr>
 </thead>
 <tbody>
