@@ -121,7 +121,7 @@
 
 @section('study')
 <ul>
-<li>Among resigned people, the proportion of people who are over 25 years old and under 30 years old is the most.<li>
+<li>Among resigned people, the proportion of people who are over 25 years old and under 30 years old is the most.</li>
 </ul>
 @endsection
 
@@ -138,5 +138,6 @@
 @endsection
 
 @section('footer')
-(c) 2019 hoge.
+(c) thinking_face.
 @endsection
+

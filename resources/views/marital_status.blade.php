@@ -165,11 +165,16 @@
 @endsection
 
 @section('discuss')
-<h1>Please add here!!!!!!!!!!!!!!!!!</h1>
+<ul>
+  <li>Single people might tend to resign.</li>
+	<li>This column, which is MaritalStatus, is weaker than Gender.</li>
+</ul>
 @endsection
 
 @section('content')
-<h1>Please add here!!!!!!!!!!!!!!!!!</h1>
+<ul>
+  <li>We just focus on Gender instead of MaritalStatus</li>
+</ul>
 @endsection
 
 @section('footer')

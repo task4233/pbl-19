@@ -149,17 +149,18 @@
 
 @section('discuss')
 <ul>
-<li>Pleeeeeeaaaaaaaaaaaaaaaaaaase add something!!!!!!!!!!!!</li>
+<li>Junior and Senior people should experience several scenes.</li>
+<li>They might want to make a carrer move.</li>
 </ul>
 @endsection
 
 @section('content')
 <ul>
 <li>Resigned people who are Junior and Senior often seek for new jobs.</li>
+<li style="list-style: none;">That's because, they should earn more salary.</li>
 </ul>
 @endsection
 
-    @section('footer')
-    (c) 2019 hoge.
-    @endsection
-    
+@section('footer')
+(c) thinking_face.
+@endsection

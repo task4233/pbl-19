@@ -19,7 +19,7 @@
 
 @section('study')
 <ul>
-  <li>facts</li>
+  <li>We have got some facts.</li>
 </ul>
 @endsection
 
@@ -30,6 +30,13 @@
 @endsection
 
 @section('content')
+<ul>
+  <li>We just do out best.</h1>
+</ul>
+@endsection
+
+@section('footer')
+(c) thinking_face.
 @endsection
 
 @section('scripts')
