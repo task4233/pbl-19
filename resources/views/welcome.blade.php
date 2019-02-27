@@ -35,6 +35,10 @@
 </ul>
 @endsection
 
+@section('footer')
+(c) thinking_face.
+@endsection
+
 @section('scripts')
 <script>
     var resign_address_list = [

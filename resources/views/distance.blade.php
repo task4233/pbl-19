@@ -167,5 +167,5 @@
 @endsection
 
 @section('footer')
-(c) 2019 hoge.
+(c) thinking_face.
 @endsection

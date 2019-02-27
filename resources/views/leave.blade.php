@@ -112,5 +112,5 @@ var reasonChart = new Chart(ctx, {
 
 
 @section('footer')
-    (c) thinking_face
+(c) thinking_face
 @endsection
