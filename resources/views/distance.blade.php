@@ -7,18 +7,18 @@
     <canvas id="distanceChart" height=100></canvas>
     <!-- end -->
 <script>
-    var array2 = localStorage.getItem('number_of_people').split(',');
-    var array1 = localStorage.getItem('number_of_resign_people').split(',');
+    var array1 = localStorage.getItem('number_of_people').split(',');
+    var array2 = localStorage.getItem('number_of_resign_people').split(',');
     var barChartData = {
         labels: ['< 5km', '5-10 km', ' 10-15 km', '> 15km'],
         datasets: [{
-            label: 'Resigned People',
+            label: 'All Employees',
             backgroundColor: 'rgba(255, 120, 55, 0.5)',
             borderColor: 'rgb(255, 120, 55)',
             borderWidth: 1,
             data: array1
         }, {
-            label: 'All Employees',
+            label: 'Resigned People',
             backgroundColor: 'rgba(120, 120, 255, 0.5)',
             borderColor:'rgba(120, 120, 55)',
             borderWidth: 1,
@@ -104,7 +104,7 @@
 <tr>
   <th scope="col">Range</th>
   <th scope="col">Numbers</th>
-  <th scope="col">Proportions</th>
+  <th scope="col">Proportion</th>
 </tr>
 </thead>
 <tbody>
