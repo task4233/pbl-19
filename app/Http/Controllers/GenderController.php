@@ -13,11 +13,19 @@ class GenderController extends Controller
     }
 
     public function index(){
-        $resigned_genders = Gender::getResignedGenders();
-        $emp_genders      = Gender::getEmpGenders();
-
+        $resigned_genders = Gender::getResignedGenders()->sortByDesc('gender_cnt');
+        $emp_genders      = Gender::getEmpGenders()->sortByDesc('gender_cnt');
         
+        $all_resigned_cnt = 0;
+        $all_emp_cnt = 0;
+        foreach ($resigned_genders as $gender){
+            $all_resigned_cnt += $gender->gender_cnt;
+        }
+        foreach ($emp_genders as $gender){
+            $all_emp_cnt += $gender->gender_cnt;
+        }
 
-        return view('gender', compact('resigned_genders', 'emp_genders'));
+        return view('gender', compact('resigned_genders', 'emp_genders', 'all_resigned_cnt', 'all_emp_cnt'));
     }
+
 }

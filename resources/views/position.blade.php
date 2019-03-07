@@ -2,86 +2,165 @@
 
 @section('title', 'Position')
 
-@section('content')
-<div class="chart">
+@section('chart')
 		<!-- chart.js -->
-		<canvas id="positionChart"></canvas>
+		<canvas id="positionChart" height=400></canvas>
 		<!-- end -->
-</div>
 
 <script>
  var ctx = document.getElementById("positionChart");
  var positionChart = new Chart(ctx, {
-     // kind of grapheme_strpos
      type: 'bar',
-     // data setting
      data: {
-             // labels
+     // labels
              labels: [
-                 @foreach ($resigned_positions as $position)
-                 "{{ $position->position }}",
+                 @foreach ($resigned_positions_short as $key => $value)
+                 "{{ ucfirst($key) }}",
                  @endforeach
              ],
              //dataset
              datasets: [{
-                     label: 'All Employees(Left)',
+                     label: 'Not resigned',
                      borderColor: 'ghostwhite',
                      borderWidth: 1,
                      // bg-color
                      backgroundColor: [
-                         @for ($hue=0;$hue<count($resigned_positions);++$hue)
-                         "hsl(" + {{ $hue*360/count($emp_positions)}} + ", 70%, 45%)",
+                         @for ($hue=0;$hue<count($resigned_positions_short);++$hue)
+                         "hsl(" + {{ $hue*360/count($emp_positions_short)}} + ", 70%, 45%)",
+                         @endfor
+                     ],
+                     hoverBackgroundColor: [
+                          @for ($hue=0;$hue<count($resigned_positions_short);++$hue)
+                         "hsl(" + {{ $hue*360/count($emp_positions_short)}} + ", 80%, 45%)",
                          @endfor
                      ],
                      data: [
-                         @foreach ($emp_positions as $position)
- {{ $position->position_cnt }},
+                         @foreach ($emp_positions_short as $key => $value)
+                            {{ $value }},
                          @endforeach
                      ],
                  },{
-                     label: 'Resigned People(Right)',
+                     label: 'Resigned',
                      borderColor: 'gray',
                      borderWidth: 1,
                      // bg-color
                      backgroundColor: [
-                         @for ($hue=0;$hue<count($resigned_positions);++$hue)
-                         "hsl(" + {{ $hue*360/count($emp_positions)}} + ", 50%, 40%)",
+                         @for ($hue=0;$hue<count($resigned_positions_short);++$hue)
+                         "hsl(" + {{ $hue*360/count($emp_positions_short)}} + ", 50%, 40%)",
                          @endfor
                      ],
+                     hoverBackgroundColor: [
+                         @for ($hue=0;$hue<count($resigned_positions_short);++$hue)
+                         "hsl(" + {{ $hue*360/count($emp_positions_short)}} + ", 60%, 45%)",
+                          @endfor
+                     ],
                      data: [
-                         @foreach ($resigned_positions as $position)
- {{ $position->position_cnt }},
+                         @foreach ($resigned_positions_short as $key => $value)
+                            {{ $value }},
                          @endforeach
                      ],
                  }],
+
          },
      options: {
-             legend: {
-                 display: true,
-                 position: 'top',
-                 labels: {
-                     fontSize: 30,
-                 },
-             },
-             xAxis: {
-         plotLines: [{
-                     color: 'red',
-                     width: 2,
-                     value: {{ $avg_resigned_positions }},
-                     }]
-             },
-             responsive: true,
-             maintainAspectRatio: false,
-     }
-     });
+            legend: {
+                display: false,
+                position: 'top',
+                labels: {
+                    fontSize: 30,
+                },
+            },
+            title: {
+                display: true,
+                position: 'top',
+                text: 'All Employees(Left)/ Resigned People(Right)',
+                fontSize: 30,
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                datalabels: {
+                    color: 'ghostwhite',
+                }
+            },
+    }
+    });
 </script>
-
-<h1>Heading Conclusion</h1>
-<p>
-write something.
-    </p>
 @endsection
 
-    @section('footer')
-    (c) 2019 hoge.
-    @endsection
+@section('table')
+<h2>Resigned People</h2>
+<table class="table table-bordered">
+<thead>
+<tr>
+  <th scope="col">Details</th>
+  <th scope="col">Numbers</th>
+  <th scope="col">Proportion</th>
+</tr>
+</thead>
+<tbody>
+@foreach ($resigned_positions_short as $position => $cnt)
+  <tr>
+<th scope="row">{{ ucfirst($position) }}</th>
+    <td>{{ $cnt }}</td>
+<td>{{ round(($cnt * 100.0 / $all_resigned_cnt), 2, PHP_ROUND_HALF_DOWN) }}%</td>
+  </tr>
+@endforeach
+  <tr>
+  <th scope="row">All</th>
+    <td>{{$all_resigned_cnt}}</td>
+    <td>100%</td>
+  </tr>
+</tbody>
+</table>
+
+<h2>All Employees</h1>
+<table class="table table-bordered">
+<thead>
+<tr>
+  <th scope="col">Labels</th>
+  <th scope="col">Numbers</th>
+  <th scope="col">Proportions</th>
+</tr>
+</thead>
+<tbody>
+@foreach ($emp_positions_short as $position => $cnt)
+  <tr>
+<th scope="row">{{ ucfirst($position) }}</th>
+    <td>{{ $cnt }}</td>
+<td>{{ round(($cnt * 100.0 / $all_emp_cnt), 2, PHP_ROUND_HALF_DOWN) }}%</td>
+  </tr>
+@endforeach
+    <tr>
+<th scope="row">All</th>
+    <td>{{$all_emp_cnt}}</td>
+    <td>100%</td>
+  </tr>
+</tbody>
+</table>
+
+@endsection
+
+@section('study')
+<ul>
+  <li>The proportions of Junior and Senior are over 70%.</li>
+</ul>
+@endsection
+
+@section('discuss')
+<ul>
+<li>Junior and Senior people should experience several scenes.</li>
+<li>They might want to make a carrer move.</li>
+</ul>
+@endsection
+
+@section('content')
+<ul>
+<li>Resigned people who are Junior and Senior often seek for new jobs.</li>
+<li style="list-style: none;">That's because, they should earn more salary.</li>
+</ul>
+@endsection
+
+@section('footer')
+(c) thinking_face.
+@endsection

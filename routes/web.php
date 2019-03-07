@@ -16,6 +16,6 @@ Route::get('/employees'       , 'EmployeeController@index')->name('employees');
 Route::get('/reasons'         , 'LeaveController@index')->name('reasons');
 Route::get('/genders'         , 'GenderController@index')->name('genders');
 Route::get('/marital_status'  , 'MaritalStatusController@index')->name('marital_status');
-Route::get('/ages'  , 'AgeController@index')->name('ages');  
+Route::get('/ages'            , 'AgeController@index')->name('ages');  
 Route::get('/distances'       , 'DistanceController@index')->name('distances');
 Route::get('/positions'       , 'PositionController@index')->name('positions'); 

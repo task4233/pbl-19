@@ -14,13 +14,21 @@ class LeaveController extends Controller
 
     public function index()
     {
-        $leaves = Leave::getDistinctReasons();
-        $reason_types = self::summarize_reasons_graph($leaves);
+        $unordered_reason_types = Leave::getDistinctReasons();
+        $reason_types = self::summarize_reasons_graph($unordered_reason_types);
+        foreach((array) $reason_types as $reason_type => $reason_cnt) {
+            $sort[$reason_cnt] = $reason_cnt;
+        }
+        array_multisort($sort, SORT_DESC, $reason_types);
+        $all_cnt = 0;
+        foreach ($reason_types as $reason_type => $reason_cnt) {
+            $all_cnt += $reason_cnt;
+        }
         
-        return view('leave', compact('reason_types'));
+        return view('leave', compact('reason_types', 'all_cnt'));
     }
 
-        private function summarize_reasons_graph($datas){
+    private function summarize_reasons_graph($datas){
         $arr = [];
         $trans = [
             'CareerPath' => 'Going abroad',

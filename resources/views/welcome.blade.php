@@ -1,12 +1,42 @@
 @extends('layouts.app')
 
-@section('title', 'Thinking_face')
+@section('title', 'thinking_face')
+
+@section('chart')
+    <div class="center">
+    <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/155/thinking-face_1f914.png" alt="">
+    <h3>Welcome to Thinking_face</h3>
+		<h4>We have made this page <u>for loading datas of distance with Ajax</u>.</h4>
+    </div>
+@endsection
+
+@section('table')
+<ul>
+  <li>We have finished to make this page.</li>
+  <li>We have analyzed given datas.</li> 
+</ul>
+@endsection
+
+@section('study')
+<ul>
+  <li>We have got some facts.</li>
+</ul>
+@endsection
+
+@section('discuss')
+<ul>
+  <li>We have discussed so many times.</li>
+</ul>
+@endsection
 
 @section('content')
-<div class="container">
-    <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/155/thinking-face_1f914.png" alt="">
-</div>
-<h3>Welcome to Thinking_face</h3>
+<ul>
+  <li>We just do out best.</h1>
+</ul>
+@endsection
+
+@section('footer')
+(c) thinking_face.
 @endsection
 
 @section('scripts')

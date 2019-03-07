@@ -2,12 +2,10 @@
 
 @section('title', 'MaritalStatus')
 
-@section('content')
-<div class="chart">
+@section('chart')
   <!-- chart.js -->
-  <canvas id="maritalStatus"></canvas>
+    <canvas id="maritalStatus" height=400></canvas>
   <!-- end -->
-</div>
 
 <script>
   var ctx = document.getElementById("maritalStatus");
@@ -75,16 +73,110 @@
       },
       responsive: true,
       maintainAspectRatio: false,
+      plugins: {
+                 datalabels: {
+                     color: 'ghostwhite',
+                 }
+             },
     }
   });
 </script>
+@endsection
 
-<h1>Heading Conclusion</h1>
-<p>
-write something.
-</p>
+@section('table')
+<h2>Resigned People</h2>
+<table class="table table-bordered">
+<thead>
+<tr>
+  <th scope="col">Rank</th>
+  <th scope="col">Details</th>
+  <th scope="col">Numbers</th>
+  <th scope="col">Proportion</th>
+</tr>
+</thead>
+<tbody>
+<?php $num = 1; ?>
+@foreach ($resigned_marital_statuses as $marital_status)
+  <tr>
+<th scope="row"><?php echo $num++; ?></th>
+    <td>{{ $marital_status->marital_status }}</td>
+    <td>{{ $marital_status->marital_status_cnt }}</td>
+<td>{{ round(($marital_status->marital_status_cnt * 100.0 / $all_resigned_cnt), 2, PHP_ROUND_HALF_DOWN) }}%</td>
+  </tr>
+</script>
+@endforeach
+  <tr>
+  <th scope="row">All</th>
+    <td></td>
+    <td>{{$all_resigned_cnt}}</td>
+    <td>100%</td>
+  </tr>
+  <tr>
+  <th scope="row">Diff</th>
+    <td></td>
+    <td></td>
+    <td>{{60.39-39.61}}%</td>
+  </tr>
+</tbody>
+</table>
+
+<h2>All Employees</h2>
+<table class="table table-bordered">
+<thead>
+<tr>
+  <th scope="col">Rank</th>
+  <th scope="col">Details</th>
+  <th scope="col">Numbers</th>
+  <th scope="col">Proportions</th>
+</tr>
+</thead>
+<tbody>
+<?php $num = 1; ?>
+@foreach ($emp_marital_statuses as $marital_status)
+  <tr>
+<th scope="row"><?php echo $num++; ?></th>
+    <td>{{ $marital_status->marital_status }}</td>
+    <td>{{ $marital_status->marital_status_cnt }}</td>
+<td>{{ round(($marital_status->marital_status_cnt * 100.0 / $all_emp_cnt), 2, PHP_ROUND_HALF_DOWN) }}%</td>
+  </tr>
+</script>
+@endforeach
+    <tr>
+<th scope="row">All</th>
+    <td></td>
+    <td>{{$all_emp_cnt}}</td>
+    <td>100%</td>
+  </tr>
+  <tr>
+  <th scope="row">Diff</th>
+    <td></td>
+    <td></td>
+    <td>{{55.3-44.7}}%</td>
+  </tr>
+</tbody>
+</table>
+@endsection
+
+@section('study')
+<ul>
+<li>The proportion of resigned single people(60.39%) is more than resigned married one(39.61%).</li>
+<li>The difference in the proportion between resigned single people(20.78%) and resigned married people is more than All one(10.6%).
+</ul>
+@endsection
+
+@section('discuss')
+<ul>
+  <li>Single people might tend to resign.</li>
+	<li>This column, which is MaritalStatus, is weaker than Gender.</li>
+</ul>
+@endsection
+
+@section('content')
+<ul>
+  <li>We just focus on Gender instead of MaritalStatus</li>
+</ul>
 @endsection
 
 @section('footer')
-(c) 2019 hoge.
+(c) thinking_face.
 @endsection
